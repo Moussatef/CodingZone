@@ -7,6 +7,13 @@ public class Learner {
     private String email;
     //private ClassLearner classLearner;
 
+    public Learner(int id, String firstName, String lastName, String email) {
+        this.setId(id);
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+        this.setEmail(email);
+    }
+
     public int getId() {
         return id;
     }
@@ -39,10 +46,5 @@ public class Learner {
         this.email = email;
     }
 
-    public Learner(int id, String firstName, String lastName, String email) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
+
 }
