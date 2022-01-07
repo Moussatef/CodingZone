@@ -7,6 +7,10 @@ public class Learner {
     private String email;
     //private ClassLearner classLearner;
 
+    public Learner() {
+
+    }
+
     public Learner(int id, String firstName, String lastName, String email) {
         this.setId(id);
         this.setFirstName(firstName);
