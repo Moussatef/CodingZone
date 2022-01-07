@@ -4,7 +4,7 @@ public class Choice {
     private int  id;
     private String content;
     private boolean isCorrect;
-    //private Question question;
+    private Question question;
 
     public Choice(int id, String content, boolean isCorrect) {
         this.setId(id);

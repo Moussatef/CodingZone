@@ -7,10 +7,10 @@ public class Staff {
     private String password;
 
     public Staff(int id, String username, String email, String password) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.password = password;
+        this.setId(id);
+        this.setUsername(username);
+        this.setEmail(email);
+        this.setPassword(password);
     }
 
     public String getPassword() {

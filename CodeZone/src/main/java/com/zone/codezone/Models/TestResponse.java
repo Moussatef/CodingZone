@@ -2,8 +2,8 @@ package com.zone.codezone.Models;
 
 public class TestResponse {
     private int  id;
-    //private TestCondidat testCondidat;
-   // private  Question question;
+    private Test test;
+    private  Question question;
     private Choice choice;
     private int timerResponse;
 
