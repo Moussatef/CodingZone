@@ -13,7 +13,6 @@ public interface DaoInterface<T> {
 
     public T findByName(String name);
 
-
     public int insert(T object);
 
     public int update(T object);
