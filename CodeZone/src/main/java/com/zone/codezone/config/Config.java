@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Config {
-    private static String url = "jdbc:postgresql://localhost:5432/codingZonedb";
+    private static String url = "jdbc:postgresql://localhost:5432/codingZone";
     private static String user = "postgres";
-    private static String passwd = "soumia";
+    private static String passwd = "4094";
     private static Connection connect;
 
     public static Connection getInstance(){
