@@ -1,7 +1,7 @@
 package com.zone.codezone.Models;
 
 public class Learner {
-    private int  id;
+    private String  id;
     private String firstName;
     private String lastName;
     private String email;
@@ -11,18 +11,18 @@ public class Learner {
 
     }
 
-    public Learner(int id, String firstName, String lastName, String email) {
+    public Learner(String id, String firstName, String lastName, String email) {
         this.setId(id);
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setEmail(email);
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -1,5 +1,7 @@
 package com.zone.codezone.Servlet;
 
+import com.zone.codezone.Dao.DaoFactory;
+import com.zone.codezone.Models.Learner;
 import com.zone.codezone.config.Config;
 
 import java.io.*;
@@ -18,6 +20,8 @@ public class HelloServlet extends HttpServlet {
     }
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
+        Learner learner=new Learner("akk12","name","LastNAme","email");
+        DaoFactory.getDaoLearner().insert(learner);
         // Hello
         PrintWriter out = response.getWriter();
         out.println("<html><body>");

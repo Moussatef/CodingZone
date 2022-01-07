@@ -5,6 +5,7 @@ import com.zone.codezone.Helpers.SqlQueries;
 import com.zone.codezone.Models.Learner;
 import com.zone.codezone.config.Config;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class LearnDao implements DaoInterface<Learner> {
                     SqlQueries.getAll("learners"));
             learners.clear();
             while (result.next()) {
-                Learner learner = new Learner(result.getInt("id"), result.getString("firstname"), result.getString("lastname"), result.getString("email"));
+                Learner learner = new Learner(result.getString("id"), result.getString("firstname"), result.getString("lastname"), result.getString("email"));
                 learners.add(learner);
 
             }
@@ -51,7 +52,7 @@ public class LearnDao implements DaoInterface<Learner> {
             ResultSet result = Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery(
                     SqlQueries.getById("learners",id));
             if (result.first()) {
-                 learner = new Learner(result.getInt("id"), result.getString("firstname"), result.getString("lastname"), result.getString("email"));
+                 learner = new Learner(result.getString("id"), result.getString("firstname"), result.getString("lastname"), result.getString("email"));
 
 
             }
@@ -69,13 +70,35 @@ public class LearnDao implements DaoInterface<Learner> {
     }
 
     @Override
-    public int insert(Learner learner) {
+    public Learner insert(Learner learner)  {
+        try {
+            PreparedStatement personStatement = Config.getInstance().prepareStatement(SqlQueries.insert("learners", 4));
+            personStatement.setString(1,learner.getId());
+            personStatement.setString(2,learner.getFirstName());
+            personStatement.setString(3,learner.getLastName());
+            personStatement.setString(4,learner.getEmail());
+            System.out.println(personStatement);
+            personStatement.executeUpdate();
+        }
+        catch (SQLException  e){
+            e.printStackTrace();
 
-        return 0;
+        }
+        return learner;
     }
 
     @Override
-    public int update(Learner object) {
+    public int update(Learner learner) {
+        try {
+            PreparedStatement personStatement = Config.getInstance().prepareStatement(SqlQueries.update("learners", new String[]{"id", "firstname","lastname","email"}, learner.getId()));
+            personStatement.setString(1,learner.getId());
+            personStatement.setString(2,learner.getFirstName());
+            personStatement.setString(3,learner.getLastName());
+            personStatement.setString(4,learner.getEmail());
+            personStatement.executeUpdate();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
         return 0;
     }
 }

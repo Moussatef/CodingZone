@@ -69,7 +69,7 @@ public class SqlQueries {
     }
 
 
-    public static String update(String tableName,String[] coulumns,int id) {
+    public static <T> String update(String tableName, String[] coulumns, T id) {
 
         sb=new StringBuilder();
 

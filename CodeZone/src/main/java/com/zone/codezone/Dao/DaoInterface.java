@@ -1,5 +1,6 @@
 package com.zone.codezone.Dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface DaoInterface<T> {
@@ -14,7 +15,7 @@ public interface DaoInterface<T> {
     public T findByName(String name);
 
 
-    public int insert(T object);
+    public T insert(T object);
 
     public int update(T object);
 }
