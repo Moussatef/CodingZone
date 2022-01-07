@@ -37,8 +37,6 @@ public class TestResponse {
     public void setTimerResponse(int timerResponse) {
         this.timerResponse = timerResponse;
     }
-
-
-
+    
 
 }
