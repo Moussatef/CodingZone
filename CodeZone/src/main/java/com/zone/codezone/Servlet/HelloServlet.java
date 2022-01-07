@@ -1,4 +1,4 @@
-package com.zone.codezone;
+package com.zone.codezone.Servlet;
 
 import java.io.*;
 import javax.servlet.http.*;
