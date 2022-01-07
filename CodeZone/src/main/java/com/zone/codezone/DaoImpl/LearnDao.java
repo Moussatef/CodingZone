@@ -35,7 +35,7 @@ public class LearnDao implements DaoInterface<Learner> {
                     SqlQueries.getAll("learners"));
             learners.clear();
             while (result.next()) {
-                Learner learner = new Learner(result.getString("id"), result.getString("firstname"), result.getString("lastname"), result.getString("email"));
+                Learner learner = new Learner(result.getString("id"), result.getString("firstname"), result.getString("lastname"), result.getString("email"),result.getInt("class_id"));
                 learners.add(learner);
 
             }
@@ -52,7 +52,7 @@ public class LearnDao implements DaoInterface<Learner> {
             ResultSet result = Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery(
                     SqlQueries.getById("learners",id));
             if (result.first()) {
-                 learner = new Learner(result.getString("id"), result.getString("firstname"), result.getString("lastname"), result.getString("email"));
+                 learner = new Learner(result.getString("id"), result.getString("firstname"), result.getString("lastname"), result.getString("email"),result.getInt("class_id"));
 
 
             }
@@ -72,11 +72,13 @@ public class LearnDao implements DaoInterface<Learner> {
     @Override
     public Learner insert(Learner learner)  {
         try {
-            PreparedStatement personStatement = Config.getInstance().prepareStatement(SqlQueries.insert("learners", 4));
-            personStatement.setString(1,learner.getId());
-            personStatement.setString(2,learner.getFirstName());
-            personStatement.setString(3,learner.getLastName());
-            personStatement.setString(4,learner.getEmail());
+            PreparedStatement personStatement = Config.getInstance().prepareStatement(SqlQueries.insert("learners", 5));
+
+            personStatement.setString(1,learner.getFirstName());
+            personStatement.setString(2,learner.getLastName());
+            personStatement.setString(3,learner.getEmail());
+            personStatement.setInt(4,learner.getClassLearner());
+            personStatement.setString(5,learner.getId());
             System.out.println(personStatement);
             personStatement.executeUpdate();
         }

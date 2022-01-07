@@ -5,6 +5,7 @@ import java.util.List;
 
 public interface DaoInterface<T> {
 
+
     public int delete(int id);
 
 
