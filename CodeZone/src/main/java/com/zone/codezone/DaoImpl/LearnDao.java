@@ -35,9 +35,8 @@ public class LearnDao implements DaoInterface<Learner> {
                     SqlQueries.getAll("learners"));
             learners.clear();
             while (result.next()) {
-                Learner learner = new Learner(result.getString("id"), result.getString("firstname"), result.getString("lastname"), result.getString("email"),result.getInt("class_id"));
+                Learner learner = new Learner(result.getInt("id"), result.getString("firstname"), result.getString("lastname"), result.getString("email"),result.getInt("class_id"));
                 learners.add(learner);
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -52,7 +51,7 @@ public class LearnDao implements DaoInterface<Learner> {
             ResultSet result = Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery(
                     SqlQueries.getById("learners",id));
             if (result.first()) {
-                 learner = new Learner(result.getString("id"), result.getString("firstname"), result.getString("lastname"), result.getString("email"),result.getInt("class_id"));
+                 learner = new Learner(result.getInt("id"), result.getString("firstname"), result.getString("lastname"), result.getString("email"),result.getInt("class_id"));
 
 
             }
@@ -74,11 +73,11 @@ public class LearnDao implements DaoInterface<Learner> {
         try {
             PreparedStatement personStatement = Config.getInstance().prepareStatement(SqlQueries.insert("learners", 5));
 
-            personStatement.setString(1,learner.getFirstName());
-            personStatement.setString(2,learner.getLastName());
-            personStatement.setString(3,learner.getEmail());
-            personStatement.setInt(4,learner.getClassLearner());
-            personStatement.setString(5,learner.getId());
+            personStatement.setInt(1,learner.getId());
+            personStatement.setString(2,learner.getFirstName());
+            personStatement.setString(3,learner.getLastName());
+            personStatement.setString(4,learner.getEmail());
+            personStatement.setInt(5,learner.getClassLearner());
             System.out.println(personStatement);
             personStatement.executeUpdate();
         }
@@ -93,7 +92,7 @@ public class LearnDao implements DaoInterface<Learner> {
     public int update(Learner learner) {
         try {
             PreparedStatement personStatement = Config.getInstance().prepareStatement(SqlQueries.update("learners", new String[]{"id", "firstname","lastname","email"}, learner.getId()));
-            personStatement.setString(1,learner.getId());
+            personStatement.setInt(1,learner.getId());
             personStatement.setString(2,learner.getFirstName());
             personStatement.setString(3,learner.getLastName());
             personStatement.setString(4,learner.getEmail());
@@ -102,5 +101,10 @@ public class LearnDao implements DaoInterface<Learner> {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    @Override
+    public Boolean login(String admin, String admin1) {
+        return null;
     }
 }

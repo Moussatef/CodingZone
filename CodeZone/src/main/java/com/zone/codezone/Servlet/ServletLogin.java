@@ -1,10 +1,13 @@
 package com.zone.codezone.Servlet;
 
+import com.zone.codezone.Dao.DaoFactory;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+
 
 @WebServlet(name = "ServletLogin", value = "/servlet-login")
 public class ServletLogin extends HttpServlet {
@@ -15,6 +18,7 @@ public class ServletLogin extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>TEST LOGIN</h1>");
+        out.println(DaoFactory.getDaoStaff().login("admin", "admin"));
         out.println("<h1>MY LOGIN TEST</h1>");
         out.println("</body></html>");
 
