@@ -3,6 +3,7 @@ package com.zone.codezone.Servlet;
 import com.zone.codezone.config.Config;
 
 import java.io.*;
+import java.sql.Connection;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
@@ -10,7 +11,6 @@ import javax.servlet.annotation.*;
 public class HelloServlet extends HttpServlet {
     private String message;
     private  String test;
-
 
     public void init() {
         test = "Mousstaef";
@@ -25,6 +25,7 @@ public class HelloServlet extends HttpServlet {
         out.println("<h1>" + Config.getInstance() + "</h1>");
         out.println("<h1>" + test + "</h1>");
         out.println("</body></html>");
+
     }
 
     public void destroy() {
