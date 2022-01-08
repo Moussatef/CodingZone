@@ -38,7 +38,6 @@ public class Question {
     public void setTime(int time) {
         this.time = time;
     }
-
     public int getScore() {
         return score;
     }

@@ -7,22 +7,13 @@ public class Test {
     private String title;
     private Date start_date;
     private Date end_date;
-    // private Competance competance;
+    private Competence competence;
 
-
-    public Test(int id, String title, Date start_date, Date end_date) {
-        this.setId(id);
+    public Test(String title, Date start_date, Date end_date, Competence competence) {
         this.setTitle(title);
         this.setStart_date(start_date);
         this.setEnd_date(end_date);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.setCompetence(competence);
     }
 
     public String getTitle() {
@@ -47,5 +38,17 @@ public class Test {
 
     public void setEnd_date(Date end_date) {
         this.end_date = end_date;
+    }
+
+    public Competence getCompetence() {
+        return competence;
+    }
+
+    public void setCompetence(Competence competence) {
+        this.competence = competence;
+    }
+
+    public int getId() {
+        return id;
     }
 }

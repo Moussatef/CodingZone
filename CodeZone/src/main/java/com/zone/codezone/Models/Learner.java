@@ -1,24 +1,39 @@
 package com.zone.codezone.Models;
 
 public class Learner {
-    private int  id;
+    private String  id;
     private String firstName;
     private String lastName;
     private String email;
-    //private ClassLearner classLearner;
+    private int classLearner;
 
-    public Learner(int id, String firstName, String lastName, String email) {
+
+
+    public Learner() {
+
+    }
+
+    public Learner(String id, String firstName, String lastName, String email,int classLearner) {
         this.setId(id);
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setEmail(email);
+        this.setClassLearner(classLearner);
     }
 
-    public int getId() {
+    public int getClassLearner() {
+        return classLearner;
+    }
+
+    public void setClassLearner(int classLearner) {
+        this.classLearner = classLearner;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
