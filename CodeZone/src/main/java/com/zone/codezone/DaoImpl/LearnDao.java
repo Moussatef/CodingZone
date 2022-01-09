@@ -28,7 +28,7 @@ public class LearnDao implements DaoInterface<Learner> {
 
     @Override
     public List<Learner> findAll() {
-        learners=new ArrayList<Learner>();
+        learners=new ArrayList<>();
         try {
 
             ResultSet result = Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery(
@@ -62,11 +62,6 @@ public class LearnDao implements DaoInterface<Learner> {
 
             return null;
         }
-    }
-
-    @Override
-    public Learner findByName(String name) {
-        return null;
     }
 
     @Override
