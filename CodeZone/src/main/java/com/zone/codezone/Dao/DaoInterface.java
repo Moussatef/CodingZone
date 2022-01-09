@@ -5,11 +5,11 @@ import java.util.List;
 public interface DaoInterface<T> {
 
 
-     int delete(int id);
+     String delete(String id);
 
      List<T> findAll();
 
-     T findById(int id);
+     T findById(String id);
 
      T insert(T object);
 

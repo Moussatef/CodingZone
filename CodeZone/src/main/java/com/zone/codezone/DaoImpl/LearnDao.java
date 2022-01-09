@@ -16,7 +16,7 @@ public class LearnDao implements DaoInterface<Learner> {
     List<Learner> learners;
     Learner learner;
     @Override
-    public int delete(int id) {
+    public String delete(String id) {
         try {
             Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate(
                     SqlQueries.delete("learners", id));
@@ -46,7 +46,7 @@ public class LearnDao implements DaoInterface<Learner> {
     }
 
     @Override
-    public Learner findById(int id) {
+    public Learner findById(String id) {
         try {
 
             ResultSet result = Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery(
