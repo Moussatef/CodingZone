@@ -1,12 +1,8 @@
 package com.zone.codezone.Servlet;
 
 import com.zone.codezone.Dao.DaoFactory;
-<<<<<<< HEAD
-=======
 import com.zone.codezone.Models.Learner;
 import com.zone.codezone.config.Config;
->>>>>>> 2e5e93c5716d0d5efb7057ecf86661518ac007f2
-
 import java.io.*;
 import java.sql.Connection;
 import java.util.Arrays;
@@ -23,15 +19,12 @@ public class HelloServlet extends HttpServlet {
     private  String test;
 
     public void init() {
-<<<<<<< HEAD
         test = "lll";
         message = "iiii World!";
 
-=======
 
         test = "Mousstaef";
         message = "Hello World!";
->>>>>>> 2e5e93c5716d0d5efb7057ecf86661518ac007f2
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -41,16 +34,15 @@ public class HelloServlet extends HttpServlet {
         // Hello
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
-<<<<<<< HEAD
+
         out.println("<h2> 3aaafak </h2>");
-        out.println("<h2>"+DaoFactory.getAllQuestions()+"</h2>");
-=======
+        out.println("<h2>"+DaoFactory.getQuestions().findAll()+"</h2>");
+
         out.println("<h1>" + message + "</h1>");
         out.println( DaoFactory.getDaoLearner().findAll());
         System.out.println("String " + DaoFactory.getDaoLearner().findAll() );
         out.println("<h1>" + Config.getInstance() + "</h1>");
         out.println("<h1>" + test + "</h1>");
->>>>>>> 2e5e93c5716d0d5efb7057ecf86661518ac007f2
         out.println("</body></html>");
 
     }

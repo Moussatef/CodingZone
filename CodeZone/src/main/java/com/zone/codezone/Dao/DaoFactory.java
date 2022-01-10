@@ -1,9 +1,6 @@
 package com.zone.codezone.Dao;
 
 import com.zone.codezone.DaoImpl.QuestionDAO;
-import com.zone.codezone.Models.Question;
-
-import java.util.List;
 
 import com.zone.codezone.DaoImpl.ChoiceDao;
 import com.zone.codezone.DaoImpl.LearnDao;
@@ -11,7 +8,6 @@ import com.zone.codezone.DaoImpl.LearnDao;
 import com.zone.codezone.DaoImpl.StaffDao;
 
 import com.zone.codezone.DaoImpl.TestResponseDao;
-import com.zone.codezone.Models.Choice;
 import com.zone.codezone.Models.Learner;
 import com.zone.codezone.Models.TestResponse;
 
@@ -34,8 +30,8 @@ public class DaoFactory {
         return new ChoiceDao();
     }
 
-    public static List<Question> getAllQuestions(){
-        return new QuestionDAO().findAll();
+    public static QuestionDAO getQuestions(){
+        return new QuestionDAO();
     }
 
 
