@@ -16,7 +16,7 @@ public class LearnDao implements DaoInterface<Learner> {
     List<Learner> learners;
     Learner learner;
     @Override
-    public int delete(int id) {
+    public String delete(String id) {
         try {
             Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeUpdate(
                     SqlQueries.delete("learners", id));
@@ -28,7 +28,7 @@ public class LearnDao implements DaoInterface<Learner> {
 
     @Override
     public List<Learner> findAll() {
-        learners=new ArrayList<Learner>();
+        learners=new ArrayList<>();
         try {
 
             ResultSet result = Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery(
@@ -45,7 +45,7 @@ public class LearnDao implements DaoInterface<Learner> {
     }
 
     @Override
-    public Learner findById(int id) {
+    public Learner findById(String id) {
         try {
 
             ResultSet result = Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery(
@@ -61,11 +61,6 @@ public class LearnDao implements DaoInterface<Learner> {
 
             return null;
         }
-    }
-
-    @Override
-    public Learner findByName(String name) {
-        return null;
     }
 
     @Override
@@ -89,7 +84,7 @@ public class LearnDao implements DaoInterface<Learner> {
     }
 
     @Override
-    public int update(Learner learner) {
+    public String update(Learner learner) {
         try {
             PreparedStatement personStatement = Config.getInstance().prepareStatement(SqlQueries.update("learners", new String[]{"id", "firstname","lastname","email"}, learner.getId()));
             personStatement.setInt(1,learner.getId());
@@ -100,7 +95,7 @@ public class LearnDao implements DaoInterface<Learner> {
         }catch(SQLException e){
             e.printStackTrace();
         }
-        return 0;
+        return " ";
     }
 
 }

@@ -1,14 +1,15 @@
 package com.zone.codezone.DaoImpl;
 
 import com.zone.codezone.Dao.DaoInterface;
+import com.zone.codezone.Models.Question;
 
 import java.util.List;
 
-public class QuestionDAO implements DaoInterface {
+public class QuestionDAO implements DaoInterface<Question> {
 
     @Override
-    public int delete(int id) {
-        return 0;
+    public String delete(String id) {
+        return " ";
     }
 
     @Override
@@ -17,22 +18,20 @@ public class QuestionDAO implements DaoInterface {
     }
 
     @Override
-    public Object findById(int id) {
+    public Question findById(String id) {
         return null;
     }
 
     @Override
-    public Object findByName(String name) {
+    public Question insert(Question object) {
         return null;
     }
 
-    @Override
-    public String insert(Object object) {
-        return "";
-    }
 
     @Override
-    public int update(Object object) {
-        return 0;
+    public String update(Question object) {
+        return null;
     }
+
+
 }
