@@ -1,24 +1,30 @@
 package com.zone.codezone.Models;
 
 public class TestResponse {
-    private int  id;
+
     private Test test;
+    private String  id;
+    //private TestCondidat testCondidat;
     private  Question question;
     private Choice choice;
     private int timerResponse;
 
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
 
-    public TestResponse(int id, Choice choice, int timerResponse) {
+    public TestResponse(String id, Choice choice, int timerResponse) {
         this.setId( id);
         this.setChoice( choice);
         this.setTimerResponse(timerResponse);
+        this.setQuestion(question);
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -37,6 +43,8 @@ public class TestResponse {
     public void setTimerResponse(int timerResponse) {
         this.timerResponse = timerResponse;
     }
-    
 
+    public Question getQuestion() {
+        return question;
+    }
 }

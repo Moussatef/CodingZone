@@ -8,9 +8,10 @@ import java.sql.PreparedStatement;
 import java.util.List;
 
 public class StaffDao implements DaoInterface<Staff> {
+
     @Override
-    public int delete(int id) {
-        return 0;
+    public String delete(String id) {
+        return id;
     }
 
     @Override
@@ -19,14 +20,10 @@ public class StaffDao implements DaoInterface<Staff> {
     }
 
     @Override
-    public Staff findById(int id) {
+    public Staff findById(String id) {
         return null;
     }
 
-    @Override
-    public Staff findByName(String name) {
-        return null;
-    }
 
     @Override
     public Staff insert(Staff object) {
@@ -34,8 +31,8 @@ public class StaffDao implements DaoInterface<Staff> {
     }
 
     @Override
-    public int update(Staff object) {
-        return 0;
+    public String update(Staff object) {
+        return " ";
     }
 
     // login

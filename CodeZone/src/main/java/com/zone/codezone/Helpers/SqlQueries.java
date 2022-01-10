@@ -42,7 +42,7 @@ public class SqlQueries {
     }
 
 
-    public static String getById(String tableName,int id) {
+    public static <T>String getById(String tableName,T id) {
 
         String query ="SELECT * FROM "+tableName+" where id="+id;
         return query;
@@ -84,7 +84,7 @@ public class SqlQueries {
     }
 
 
-    public static String delete(String tableName,int id) {
+    public static <T> String delete(String tableName,T id) {
 
         String query ="DELETE FROM "+tableName+" WHERE id="+id;
         return query;
