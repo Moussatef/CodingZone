@@ -103,8 +103,4 @@ public class LearnDao implements DaoInterface<Learner> {
         return 0;
     }
 
-    @Override
-    public Boolean login(String admin, String admin1) {
-        return null;
-    }
 }

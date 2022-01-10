@@ -20,5 +20,5 @@ public interface DaoInterface<T> {
 
     public int update(T object);
 
-    public Boolean login(String admin, String admin1);
+    // public Boolean login(String admin, String admin1);
 }

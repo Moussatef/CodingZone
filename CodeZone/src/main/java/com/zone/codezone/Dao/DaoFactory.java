@@ -11,7 +11,7 @@ public class DaoFactory {
         return new LearnDao();
     }
 
-    public static DaoInterface<Staff> getDaoStaff(){
+    public static StaffDao getDaoStaff(){
         return new StaffDao();
     }
 

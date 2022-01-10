@@ -7,6 +7,8 @@ import com.zone.codezone.config.Config;
 import java.io.*;
 import java.sql.Connection;
 import java.util.Arrays;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
@@ -18,9 +20,11 @@ public class HelloServlet extends HttpServlet {
     private  String test;
 
     public void init() {
+
         test = "Mousstaef";
         message = "Hello World!";
     }
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
       //  Learner learner=new Learner(5,"name","LastNAme","email2",1);
@@ -42,12 +46,12 @@ public class HelloServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
-        // form data
         String name = request.getParameter("username");
         String password = request.getParameter("password");
         out.println("<h1>" + name + "</h1>");
         out.println("<h1>" + password + "</h1>");
         out.println("</body></html>");
+        // redirect to
     }
 
     public void destroy() {

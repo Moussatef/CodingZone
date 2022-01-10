@@ -10,12 +10,10 @@
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
 <a href="servlet-login">Login Servlet</a>
-
-<form action="hello-servlet" method="post">
+<form action="servlet-login" method="post">
     <input type="text" name="username" placeholder="Username"/>
     <input type="password" name="password" placeholder="Password"/>
     <input type="submit" value="Submit"/>
-
 </form>
 </body>
 </html>
