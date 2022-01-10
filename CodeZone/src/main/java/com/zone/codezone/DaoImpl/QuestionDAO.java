@@ -2,19 +2,22 @@ package com.zone.codezone.DaoImpl;
 
 import com.zone.codezone.Dao.DAO;
 import com.zone.codezone.Dao.DaoInterface;
+import com.zone.codezone.Helpers.SqlQueries;
+import com.zone.codezone.Models.Choice;
 import com.zone.codezone.Models.Question;
+import com.zone.codezone.config.Config;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class QuestionDAO extends DAO<Question> {
-
+    Question question;
 
     public List<Question> findAll() {
-        System.out.println("TEEESTTTTTT");
         String query = "SELECT * FROM questions";
         List<Question> questionsList = new ArrayList<>();
         try {
@@ -23,7 +26,6 @@ public class QuestionDAO extends DAO<Question> {
             while (queryResult.next()) {
                 questionsList.add(new Question(queryResult.getString("id"), queryResult.getString("content"), queryResult.getInt("time_s"), queryResult.getFloat("score")));
             }
-            System.out.println("ID : " + queryResult.getString("id"));
 
             return questionsList;
 
@@ -37,9 +39,25 @@ public class QuestionDAO extends DAO<Question> {
 
 
     @Override
-    public Question find(int id) {
+    public Question find(String id) {
 
-        return null;
+        try {
+
+            ResultSet queryResult = Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery(
+                    SqlQueries.getById("questions",id));
+            if (queryResult.first()) {
+                //add question
+                question = new Question(queryResult.getString("id"), queryResult.getString("content"), queryResult.getInt("time_s"), queryResult.getFloat("score"));
+
+            }
+            return question;
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return null;
+        }
+
+
     }
 
     @Override
