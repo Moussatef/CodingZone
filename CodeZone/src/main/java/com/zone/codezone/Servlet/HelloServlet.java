@@ -1,5 +1,7 @@
 package com.zone.codezone.Servlet;
 
+import com.zone.codezone.Dao.DaoFactory;
+
 import java.io.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -10,8 +12,9 @@ public class HelloServlet extends HttpServlet {
     private  String test;
 
     public void init() {
-        test = "Mousstaef";
-        message = "Hello World!";
+        test = "lll";
+        message = "iiii World!";
+
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -19,8 +22,8 @@ public class HelloServlet extends HttpServlet {
         // Hello
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
-        out.println("<h1>" + message + "</h1>");
-        out.println("<h1>" + test + "</h1>");
+        out.println("<h2> 3aaafak </h2>");
+        out.println("<h2>"+DaoFactory.getAllQuestions()+"</h2>");
         out.println("</body></html>");
     }
 
