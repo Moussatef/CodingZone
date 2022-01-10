@@ -13,5 +13,8 @@ public interface DaoInterface<T> {
 
      T insert(T object);
 
-     int update(T object);
+
+    // public Boolean login(String admin, String admin1);
+
+     String update(T object);
 }
