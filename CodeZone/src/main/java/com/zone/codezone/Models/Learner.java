@@ -5,13 +5,28 @@ public class Learner {
     private String firstName;
     private String lastName;
     private String email;
-    //private ClassLearner classLearner;
+    private int classLearner;
 
-    public Learner(int id, String firstName, String lastName, String email) {
+
+
+    public Learner() {
+
+    }
+
+    public Learner(int id, String firstName, String lastName, String email,int classLearner) {
         this.setId(id);
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setEmail(email);
+        this.setClassLearner(classLearner);
+    }
+
+    public int getClassLearner() {
+        return classLearner;
+    }
+
+    public void setClassLearner(int classLearner) {
+        this.classLearner = classLearner;
     }
 
     public int getId() {

@@ -8,16 +8,16 @@ import java.util.List;
 public interface DaoInterface<T> {
 
 
-    public int delete(int id);
+     String delete(String id);
+
+     List<T> findAll();
+
+     T findById(String id);
+
+     T insert(T object);
 
 
-    public List<T> findAll();
+    // public Boolean login(String admin, String admin1);
 
-    public T findById(int id);
-
-    public T findByName(String name);
-
-    public int insert(T object);
-
-    public int update(T object);
+     String update(T object);
 }

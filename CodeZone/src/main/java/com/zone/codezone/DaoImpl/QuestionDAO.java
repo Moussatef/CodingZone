@@ -9,10 +9,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class QuestionDAO extends DAO<Question> {
 
 
-    public List<Question> findAll(){
+    public List<Question> findAll() {
         System.out.println("TEEESTTTTTT");
         String query = "SELECT * FROM questions";
         List<Question> questionsList = new ArrayList<>();
@@ -20,9 +21,9 @@ public class QuestionDAO extends DAO<Question> {
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(query);
             while (queryResult.next()) {
-                questionsList.add(new Question(queryResult.getString("id"),queryResult.getString("content"),queryResult.getInt("time_s"),queryResult.getFloat("score")));
+                questionsList.add(new Question(queryResult.getString("id"), queryResult.getString("content"), queryResult.getInt("time_s"), queryResult.getFloat("score")));
             }
-            System.out.println("ID : "+queryResult.getString("id"));
+            System.out.println("ID : " + queryResult.getString("id"));
 
             return questionsList;
 
@@ -31,8 +32,9 @@ public class QuestionDAO extends DAO<Question> {
             e.getCause();
         }
         return questionsList;
-
     }
+
+
 
     @Override
     public Question find(int id) {
@@ -46,7 +48,7 @@ public class QuestionDAO extends DAO<Question> {
     }
 
     @Override
-    public Question update(Question object) {
+    public Question update(Question obj) {
         return null;
     }
 
@@ -54,4 +56,6 @@ public class QuestionDAO extends DAO<Question> {
     public void delete(Question obj) {
 
     }
+
+
 }

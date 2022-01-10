@@ -6,7 +6,6 @@
         <exploded>true</exploded>
         <module>CodeZone</module>
         <packaging>war</packaging>
-        <unpackNestedArchives>false</unpackNestedArchives>
       </options>
     </properties>
     <root id="root">
@@ -15,7 +14,11 @@
           <element id="module-output" name="CodeZone" />
         </element>
         <element id="directory" name="lib">
+<<<<<<< HEAD
           <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.3.0" />
+=======
+          <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.3.1" />
+>>>>>>> 2e5e93c5716d0d5efb7057ecf86661518ac007f2
           <element id="library" level="project" name="Maven: org.checkerframework:checker-qual:3.5.0" />
         </element>
       </element>

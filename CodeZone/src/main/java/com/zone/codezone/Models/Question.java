@@ -5,21 +5,26 @@ public class Question {
     private String content;
     private int time ;
     private float score;
-    //private Test test;
+    private Test test;
+
+
 
     public Question(String id, String content, int time, float score) {
-        this.id = id;
+//, Test test
+// this.setId(id);
         this.setContent(content);
         this.setTime(time);
         this.setScore(score);
+       // this.setTest(test);
     }
-
 
     public String getId() {
         return id;
     }
 
-
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getContent() {
         return content;
@@ -43,5 +48,13 @@ public class Question {
 
     public void setScore(float score) {
         this.score = score;
+    }
+
+    public Test getTest() {
+        return test;
+    }
+
+    public void setTest(Test test) {
+        this.test = test;
     }
 }
