@@ -3,7 +3,6 @@ package com.zone.codezone.Servlet;
 import com.zone.codezone.Dao.DaoFactory;
 import com.zone.codezone.Models.Learner;
 import com.zone.codezone.config.Config;
-
 import java.io.*;
 import java.sql.Connection;
 import java.util.Arrays;
@@ -20,6 +19,9 @@ public class HelloServlet extends HttpServlet {
     private  String test;
 
     public void init() {
+        test = "lll";
+        message = "iiii World!";
+
 
         test = "Mousstaef";
         message = "Hello World!";
@@ -32,6 +34,10 @@ public class HelloServlet extends HttpServlet {
         // Hello
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
+
+        out.println("<h2> 3aaafak </h2>");
+        out.println("<h2>"+DaoFactory.getQuestions().findAll()+"</h2>");
+
         out.println("<h1>" + message + "</h1>");
         out.println( DaoFactory.getDaoLearner().findAll());
         System.out.println("String " + DaoFactory.getDaoLearner().findAll() );
