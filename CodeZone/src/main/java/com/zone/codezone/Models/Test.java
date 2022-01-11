@@ -9,6 +9,9 @@ public class Test {
     private Date end_date;
     private Competence competence;
 
+    public Test(){
+
+    }
     public Test(String title, Date start_date, Date end_date, Competence competence) {
         this.setTitle(title);
         this.setStart_date(start_date);
