@@ -1,15 +1,21 @@
 package com.zone.codezone.Models;
 
-public class Class {
+public class ClassLearner {
 
-    private int id;
+    private String id;
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     private String class_name;
 
-    public Class(String class_name) {
+    public ClassLearner(String id,String class_name) {
+        this.setId(id);
         this.setClass_name(class_name);
     }
 
-    public int getId() {
+    public String  getId() {
         return id;
     }
 

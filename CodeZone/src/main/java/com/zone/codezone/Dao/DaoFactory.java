@@ -32,6 +32,6 @@ public class DaoFactory {
         return new CompetanceDao();
     }
 
-
+    public static  ClassDao getClassDao(){ return  new ClassDao();}
 }
 
