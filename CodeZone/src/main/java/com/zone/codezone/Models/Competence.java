@@ -9,7 +9,7 @@ public class Competence {
     public Competence(){
 
     }
-    public Competence( String competence_name) {
+    public Competence( String id,String competence_name) {
         this.setCompetence_name(competence_name);
     }
 
