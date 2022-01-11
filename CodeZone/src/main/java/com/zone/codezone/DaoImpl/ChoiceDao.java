@@ -16,6 +16,7 @@ import java.util.List;
 
 public class ChoiceDao implements DaoInterface<Choice> {
 
+
     Choice choice;
     List<Choice> choices;
 

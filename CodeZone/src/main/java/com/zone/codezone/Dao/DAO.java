@@ -1,11 +1,12 @@
 package com.zone.codezone.Dao;
 
+import com.zone.codezone.config.Config;
 import com.zone.codezone.connection.DatabaseConnection;
 
 import java.sql.Connection;
 
 public abstract class DAO<T> {
-    public Connection connectDB = DatabaseConnection.getInstance();
+    public Connection connectDB = Config.getInstance();
     /**
      * Permet de récupérer un objet via son ID
      * @param id
