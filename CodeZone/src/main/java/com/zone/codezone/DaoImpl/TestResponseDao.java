@@ -2,9 +2,7 @@ package com.zone.codezone.DaoImpl;
 
 import com.zone.codezone.Dao.DaoInterface;
 import com.zone.codezone.Helpers.SqlQueries;
-import com.zone.codezone.Models.Choice;
-import com.zone.codezone.Models.Learner;
-import com.zone.codezone.Models.TestResponse;
+import com.zone.codezone.Models.*;
 import com.zone.codezone.config.Config;
 
 import java.sql.PreparedStatement;
@@ -42,7 +40,9 @@ public class TestResponseDao implements DaoInterface<TestResponse> {
             responses.clear();
             while (result.next()) {
                 Choice choice=getDaoChoice().findById(result.getString("choice_id"));
-                TestResponse response = new TestResponse(result.getString("id"),choice,result.getInt("timer"));
+                Test test=new Test();
+                TestCandidat testCandidat= new TestCandidat();
+                TestResponse response = new TestResponse(result.getString("id"),choice,result.getInt("timer"),test,testCandidat);
                 responses.add(response);
 
             }
@@ -61,7 +61,9 @@ public class TestResponseDao implements DaoInterface<TestResponse> {
 
             if (result.first()) {
                 Choice choice=getDaoChoice().findById(result.getString("choice_id"));
-                 testresponse = new TestResponse(result.getString("id"),choice,result.getInt("timer"));
+                Test test=new Test();
+                TestCandidat testCandidat= new TestCandidat();
+                 testresponse = new TestResponse(result.getString("id"),choice,result.getInt("timer"),test,testCandidat);
 
             }
             return testresponse;
