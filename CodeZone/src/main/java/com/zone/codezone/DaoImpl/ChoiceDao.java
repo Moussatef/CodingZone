@@ -1,9 +1,11 @@
 package com.zone.codezone.DaoImpl;
 
+import com.zone.codezone.Dao.DaoFactory;
 import com.zone.codezone.Dao.DaoInterface;
 import com.zone.codezone.Helpers.SqlQueries;
 import com.zone.codezone.Models.Choice;
 import com.zone.codezone.Models.Learner;
+import com.zone.codezone.Models.Question;
 import com.zone.codezone.config.Config;
 
 import java.sql.PreparedStatement;
@@ -38,7 +40,8 @@ public class ChoiceDao implements DaoInterface<Choice> {
                     SqlQueries.getAll("choices"));
             choices.clear();
             while (result.next()) {
-                Choice choice =new Choice(result.getString("id"),result.getString("content"),result.getBoolean("iscorrect"));
+                Question question= DaoFactory.getQuestions().find(result.getString("question_id"));
+                Choice choice =new Choice(result.getString("id"),result.getString("content"),result.getBoolean("iscorrect"),question);
                 choices.add(choice);
 
             }
@@ -56,8 +59,8 @@ public class ChoiceDao implements DaoInterface<Choice> {
             ResultSet result = Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery(
                     SqlQueries.getById("choices",id));
             if (result.first()) {
-                //add question
-                choice = new Choice(result.getString("id"),result.getString("content"),result.getBoolean("iscorrect"));
+                Question question= DaoFactory.getQuestions().find(result.getString("question_id"));
+                choice = new Choice(result.getString("id"),result.getString("content"),result.getBoolean("iscorrect"),question);
 
             }
             return choice;
@@ -77,7 +80,7 @@ public class ChoiceDao implements DaoInterface<Choice> {
             choiceStatement.setString(1,choice.getId());
             choiceStatement.setString(2,choice.getContent());
             choiceStatement.setBoolean(3,choice.isCorrect());
-            choiceStatement.setLong(4,choice.getQuestion().getId());
+            choiceStatement.setString(4,choice.getQuestion().getId());
             System.out.println(choiceStatement);
             choiceStatement.executeUpdate();
         }
@@ -96,7 +99,7 @@ public class ChoiceDao implements DaoInterface<Choice> {
             choiceStatement.setString(1,choice.getId());
             choiceStatement.setString(2,choice.getContent());
             choiceStatement.setBoolean(3,choice.isCorrect());
-            choiceStatement.setLong(4,choice.getQuestion().getId());
+            choiceStatement.setString(4,choice.getQuestion().getId());
             choiceStatement.executeUpdate();
         }catch(SQLException e){
             e.printStackTrace();

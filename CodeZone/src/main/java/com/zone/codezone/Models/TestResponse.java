@@ -4,21 +4,22 @@ public class TestResponse {
 
     private Test test;
     private String  id;
-    //private TestCondidat testCondidat;
+    private TestCandidat testCondidat;
     private  Question question;
     private Choice choice;
     private int timerResponse;
 
-    public void setQuestion(Question question) {
-        this.question = question;
-    }
 
-    public TestResponse(String id, Choice choice, int timerResponse) {
+
+    public TestResponse(String id, Choice choice, int timerResponse,Test test,TestCandidat testCondidat) {
         this.setId( id);
         this.setChoice( choice);
         this.setTimerResponse(timerResponse);
         this.setQuestion(question);
+        this.setTest(test);
+        this.setTestCondidat(testCondidat);
     }
+
 
     public String getId() {
         return id;
@@ -46,5 +47,23 @@ public class TestResponse {
 
     public Question getQuestion() {
         return question;
+    }
+    public Test getTest() {
+        return test;
+    }
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    public void setTest(Test test) {
+        this.test = test;
+    }
+
+    public TestCandidat getTestCondidat() {
+        return testCondidat;
+    }
+
+    public void setTestCondidat(TestCandidat testCondidat) {
+        this.testCondidat = testCondidat;
     }
 }

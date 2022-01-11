@@ -6,10 +6,11 @@ public class Choice {
     private boolean isCorrect;
     private Question question;
 
-    public Choice(String id, String content, boolean isCorrect) {
+    public Choice(String id, String content, boolean isCorrect,Question question) {
         this.setId(id);
         this.setContent( content);
         this.setCorrect(isCorrect);
+        this.setQuestion(question);
     }
 
     public String getId() {

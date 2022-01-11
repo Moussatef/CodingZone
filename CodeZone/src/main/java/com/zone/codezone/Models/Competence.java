@@ -1,14 +1,24 @@
 package com.zone.codezone.Models;
 
 public class Competence {
-    private  int id;
+    private  String id;
     private  String competence_name;
-    public Competence( String competence_name) {
+
+
+
+    public Competence(){
+
+    }
+    public Competence( String id,String competence_name) {
         this.setCompetence_name(competence_name);
     }
 
-    public int getId() {
+    public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
 

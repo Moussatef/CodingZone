@@ -1,25 +1,28 @@
 package com.zone.codezone.Models;
 
 public class Question {
-    private int  id;
+    private String id;
     private String content;
-    private int time;
-    private int score;
+    private int time ;
+    private float score;
     private Test test;
 
-    public Question(int id, String content, int time, int score, Test test) {
-        this.setId(id);
+
+
+    public Question(String id, String content, int time, float score) {
+//, Test test
+// this.setId(id);
         this.setContent(content);
         this.setTime(time);
         this.setScore(score);
-        this.setTest(test);
+       // this.setTest(test);
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -38,11 +41,12 @@ public class Question {
     public void setTime(int time) {
         this.time = time;
     }
-    public int getScore() {
+
+    public float getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(float score) {
         this.score = score;
     }
 

@@ -3,17 +3,31 @@ package com.zone.codezone.Models;
 import java.sql.Date;
 
 public class Test {
-    private int id;
+    private String id;
     private String title;
     private Date start_date;
     private Date end_date;
     private Competence competence;
 
-    public Test(String title, Date start_date, Date end_date, Competence competence) {
+
+
+    public Test(){
+
+    }
+    public Test(String id ,String title, Date start_date, Date end_date, Competence competence) {
+        this.setId(id);
         this.setTitle(title);
         this.setStart_date(start_date);
         this.setEnd_date(end_date);
         this.setCompetence(competence);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -48,7 +62,4 @@ public class Test {
         this.competence = competence;
     }
 
-    public int getId() {
-        return id;
-    }
 }
