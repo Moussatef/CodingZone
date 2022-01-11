@@ -78,7 +78,7 @@ public class TestResponseDao implements DaoInterface<TestResponse> {
             PreparedStatement responseStatement = Config.getInstance().prepareStatement(SqlQueries.insert("test_responses", 4));
 
             responseStatement.setString(1,response.getId());
-            responseStatement.setLong(2,response.getQuestion().getId());
+            responseStatement.setString(2,response.getQuestion().getId());
             responseStatement.setString(3,response.getChoice().getId());
            // responseStatement.setString(4,response.getTestCandidate().getId());
             responseStatement.executeUpdate();
@@ -95,7 +95,7 @@ public class TestResponseDao implements DaoInterface<TestResponse> {
         try {
             PreparedStatement responseStatement = Config.getInstance().prepareStatement(SqlQueries.update("test_responses", new String[]{"id", "question_id","choice_id","test_candidats_id"}, response.getId()));
             responseStatement.setString(1,response.getId());
-            responseStatement.setLong(2,response.getQuestion().getId());
+            responseStatement.setString(2,response.getQuestion().getId());
             responseStatement.setString(3,response.getChoice().getId());
             // responseStatement.setString(4,response.getTestCandidate().getId());
             responseStatement.executeUpdate();
