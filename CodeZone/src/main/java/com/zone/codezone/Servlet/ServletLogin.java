@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "ServletLogin", value = "/servlet-login")
 public class ServletLogin extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -17,7 +18,7 @@ public class ServletLogin extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // login and redirect to index.jsp
+        
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
