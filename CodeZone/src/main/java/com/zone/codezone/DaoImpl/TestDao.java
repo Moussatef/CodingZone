@@ -1,5 +1,6 @@
 package com.zone.codezone.DaoImpl;
 
+import com.zone.codezone.Dao.DaoFactory;
 import com.zone.codezone.Dao.DaoInterface;
 import com.zone.codezone.Helpers.SqlQueries;
 import com.zone.codezone.Models.*;
@@ -36,8 +37,7 @@ public class TestDao implements DaoInterface<Test> {
                     SqlQueries.getAll("tests"));
             tests.clear();
             while (result.next()) {
-               //competance dao (String id ,String title, Date start_date, Date end_date, Competence competence)
-                Competence competence=new Competence();
+                Competence competence= DaoFactory.getCompetenceDao().findById(result.getString("competence_id"));
                 Test test = new Test(result.getString("id"),result.getString("title"),result.getDate("start_date"),result.getDate("end_date"),competence);
                 tests.add(test);
 
@@ -56,7 +56,7 @@ public class TestDao implements DaoInterface<Test> {
                     SqlQueries.getById("tests",id));
 
             if (result.first()) {
-                Competence competence=new Competence();
+                Competence competence= DaoFactory.getCompetenceDao().findById(result.getString("competence_id"));
                 test = new Test(result.getString("id"),result.getString("title"),result.getDate("start_date"),result.getDate("end_date"),competence);
 
 
