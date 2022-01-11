@@ -25,7 +25,7 @@ public class ServletLogin extends HttpServlet {
         if (DaoFactory.getDaoStaff().login(username, password)) {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
-            response.sendRedirect("dashboard.jsp");
+            response.sendRedirect("Dashboard");
 
         } else {
             response.sendRedirect("index.jsp");
