@@ -3,6 +3,7 @@ package com.zone.codezone.DaoImpl;
 import com.zone.codezone.Dao.DaoFactory;
 import com.zone.codezone.Dao.DaoInterface;
 import com.zone.codezone.Helpers.SqlQueries;
+import com.zone.codezone.Helpers.UuidHelper;
 import com.zone.codezone.Models.ClassLearner;
 import com.zone.codezone.Models.Learner;
 import com.zone.codezone.config.Config;
@@ -12,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LearnDao implements DaoInterface<Learner> {
 
@@ -70,13 +72,17 @@ public class LearnDao implements DaoInterface<Learner> {
     @Override
     public Learner insert(Learner learner)  {
         try {
+            String id=UuidHelper.getUuiId();
+            while (Objects.nonNull(findById(id))){
+                id=UuidHelper.getUuiId();
+            }
             PreparedStatement personStatement = Config.getInstance().prepareStatement(SqlQueries.insert("learners", 5));
 
             personStatement.setString(1,learner.getFirstName());
             personStatement.setString(2,learner.getLastName());
             personStatement.setString(3,learner.getEmail());
             personStatement.setString(4,learner.getClassLearner().getId());
-            personStatement.setString(5,learner.getId());
+            personStatement.setString(5,id);
             System.out.println(personStatement);
             personStatement.executeUpdate();
         }
