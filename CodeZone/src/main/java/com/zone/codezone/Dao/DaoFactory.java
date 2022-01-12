@@ -32,6 +32,10 @@ public class DaoFactory {
         return new CompetanceDao();
     }
 
+    public static TestDao getTest(){
+        return new TestDao();
+    }
+
 
 }
 

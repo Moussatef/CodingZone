@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CompetanceDao implements DaoInterface<Competence> {
@@ -29,8 +30,8 @@ public class CompetanceDao implements DaoInterface<Competence> {
     }
 
     @Override
-    public List<Competence> findAll() {
-        competences=new ArrayList<>();
+    public ArrayList<Competence> findAll() {
+        ArrayList competences = new ArrayList<>();
         try {
 
             ResultSet result = Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery(
@@ -43,7 +44,7 @@ public class CompetanceDao implements DaoInterface<Competence> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return competences;
     }
 
     @Override

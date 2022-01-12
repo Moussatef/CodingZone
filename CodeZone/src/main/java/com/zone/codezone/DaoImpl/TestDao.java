@@ -77,7 +77,7 @@ public class TestDao implements DaoInterface<Test> {
             testStatement.setString(1,test.getId());
             testStatement.setString(2,test.getTitle());
             testStatement.setDate(3,test.getStart_date());
-            testStatement.setDate(4,test.getStart_date());
+            testStatement.setDate(4,test.getEnd_date());
             testStatement.setString(5,test.getCompetence().getId());
             testStatement.executeUpdate();
         }
