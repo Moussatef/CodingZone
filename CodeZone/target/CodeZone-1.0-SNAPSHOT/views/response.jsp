@@ -18,7 +18,7 @@
     List<Choice> choices  = ( List<Choice>) request.getAttribute("choices");
 
 %>
-    <form>
+    <form action="Answer" method="post">
         <div>
             <p><%=question.getContent()%></p>
         </div>
@@ -32,7 +32,7 @@
 
         </div>
         <div>
-            <input type="button" name="validate" value="next">
+            <input type="submit" name="validate" value="next">
         </div>
     </form>
 </body>

@@ -33,5 +33,6 @@ public class DaoFactory {
     }
 
     public static  ClassDao getClassDao(){ return  new ClassDao();}
+    public  static  TestDao getTestDao(){ return  new TestDao();}
 }
 
