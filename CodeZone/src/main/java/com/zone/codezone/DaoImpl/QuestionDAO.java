@@ -65,12 +65,11 @@ public class QuestionDAO extends DAO<Question> {
     public Question create(Question questionInsert) {
         try {
             PreparedStatement questionStatement = Config.getInstance().prepareStatement(SqlQueries.insert("questions", 5));
-
             questionStatement.setString(1,questionInsert.getId());
             questionStatement.setString(2,questionInsert.getContent());
             questionStatement.setInt(3,questionInsert.getTime());
             questionStatement.setFloat(4,questionInsert.getScore());
-            questionStatement.setInt(5,questionInsert.getTest().getId());
+            questionStatement.setString(5,questionInsert.getTest().getId());
             System.out.println(questionStatement);
             questionStatement.executeUpdate();
         }
@@ -82,8 +81,19 @@ public class QuestionDAO extends DAO<Question> {
     }
 
     @Override
-    public Question update(Question obj) {
-        return null;
+    public String update(Question questionUpdate) {
+        try {
+            PreparedStatement questionStatement = Config.getInstance().prepareStatement(SqlQueries.update("questions", new String[]{"id", "content","time","score","test_id"}, questionUpdate.getId()));
+
+            questionStatement.setString(2,questionUpdate.getContent());
+            questionStatement.setInt(3,questionUpdate.getTime());
+            questionStatement.setFloat(4,questionUpdate.getScore());
+            questionStatement.setString(5,questionUpdate.getTest().getId());
+            questionStatement.executeUpdate();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return questionUpdate.getId();
     }
 
     @Override

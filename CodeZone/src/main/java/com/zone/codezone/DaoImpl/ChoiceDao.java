@@ -1,9 +1,11 @@
 package com.zone.codezone.DaoImpl;
 
+import com.zone.codezone.Dao.DaoFactory;
 import com.zone.codezone.Dao.DaoInterface;
 import com.zone.codezone.Helpers.SqlQueries;
 import com.zone.codezone.Models.Choice;
 import com.zone.codezone.Models.Learner;
+import com.zone.codezone.Models.Question;
 import com.zone.codezone.config.Config;
 
 import java.sql.PreparedStatement;
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChoiceDao implements DaoInterface<Choice> {
+
 
     Choice choice;
     List<Choice> choices;
@@ -38,7 +41,8 @@ public class ChoiceDao implements DaoInterface<Choice> {
                     SqlQueries.getAll("choices"));
             choices.clear();
             while (result.next()) {
-                Choice choice =new Choice(result.getString("id"),result.getString("content"),result.getBoolean("iscorrect"));
+                Question question= DaoFactory.getQuestions().find(result.getString("question_id"));
+                Choice choice =new Choice(result.getString("id"),result.getString("content"),result.getBoolean("iscorrect"),question);
                 choices.add(choice);
 
             }
@@ -56,8 +60,8 @@ public class ChoiceDao implements DaoInterface<Choice> {
             ResultSet result = Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery(
                     SqlQueries.getById("choices",id));
             if (result.first()) {
-                //add question
-                choice = new Choice(result.getString("id"),result.getString("content"),result.getBoolean("iscorrect"));
+                Question question= DaoFactory.getQuestions().find(result.getString("question_id"));
+                choice = new Choice(result.getString("id"),result.getString("content"),result.getBoolean("iscorrect"),question);
 
             }
             return choice;

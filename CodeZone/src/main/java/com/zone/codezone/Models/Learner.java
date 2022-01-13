@@ -1,11 +1,11 @@
 package com.zone.codezone.Models;
 
 public class Learner {
-    private int  id;
+    private String  id;
     private String firstName;
     private String lastName;
     private String email;
-    private int classLearner;
+    private ClassLearner classLearner;
 
 
 
@@ -13,7 +13,7 @@ public class Learner {
 
     }
 
-    public Learner(int id, String firstName, String lastName, String email,int classLearner) {
+    public Learner(String id, String firstName, String lastName, String email, ClassLearner classLearner) {
         this.setId(id);
         this.setFirstName(firstName);
         this.setLastName(lastName);
@@ -21,19 +21,19 @@ public class Learner {
         this.setClassLearner(classLearner);
     }
 
-    public int getClassLearner() {
+    public ClassLearner getClassLearner() {
         return classLearner;
     }
 
-    public void setClassLearner(int classLearner) {
+    public void setClassLearner(ClassLearner classLearner) {
         this.classLearner = classLearner;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

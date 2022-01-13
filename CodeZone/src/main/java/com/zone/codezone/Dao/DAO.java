@@ -1,11 +1,12 @@
 package com.zone.codezone.Dao;
 
+import com.zone.codezone.config.Config;
 import com.zone.codezone.connection.DatabaseConnection;
 
 import java.sql.Connection;
 
 public abstract class DAO<T> {
-    public Connection connectDB = DatabaseConnection.getInstance();
+    public Connection connectDB = Config.getInstance();
     /**
      * Permet de récupérer un objet via son ID
      * @param id
@@ -24,7 +25,7 @@ public abstract class DAO<T> {
      * Permet de mettre à jour les données d'une entrée dans la base
      * @param obj
      */
-    public abstract T update(T obj);
+    public abstract String update(T obj);
 
     /**
      * Permet la suppression d'une entrée de la base

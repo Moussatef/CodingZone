@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
 Created-By: IntelliJ IDEA
+<<<<<<< HEAD
 Built-By: otman
 Build-Jdk: 11.0.13
+=======
+Built-By: hamza
+Build-Jdk: version 11.0.13
+>>>>>>> origin/devlop
 
