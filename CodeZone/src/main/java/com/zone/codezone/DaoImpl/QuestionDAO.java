@@ -7,6 +7,7 @@ import com.zone.codezone.Models.Choice;
 import com.zone.codezone.Models.Question;
 import com.zone.codezone.config.Config;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -61,8 +62,23 @@ public class QuestionDAO extends DAO<Question> {
     }
 
     @Override
-    public Question create(Question obj) {
-        return null;
+    public Question create(Question questionInsert) {
+        try {
+            PreparedStatement questionStatement = Config.getInstance().prepareStatement(SqlQueries.insert("questions", 5));
+
+            questionStatement.setString(1,questionInsert.getId());
+            questionStatement.setString(2,questionInsert.getContent());
+            questionStatement.setInt(3,questionInsert.getTime());
+            questionStatement.setFloat(4,questionInsert.getScore());
+            questionStatement.setInt(5,questionInsert.getTest().getId());
+            System.out.println(questionStatement);
+            questionStatement.executeUpdate();
+        }
+        catch (SQLException  e){
+            e.printStackTrace();
+
+        }
+        return questionInsert;
     }
 
     @Override

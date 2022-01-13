@@ -15,7 +15,7 @@ import java.util.List;
 public class Servlet2 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Question>  questionList = DaoFactory.getAllQuestions();
+        List<Question>  questionList = DaoFactory.getQuestions().findAll();
         response.setContentType("text/html");
         // Hello
         PrintWriter out = response.getWriter();
