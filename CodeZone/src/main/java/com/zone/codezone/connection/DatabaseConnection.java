@@ -8,7 +8,7 @@ public class DatabaseConnection {
 
     private static final String url = "jdbc:postgresql://localhost:5432/codingZonedb";
     private static final String user = "postgres";
-    private static final String passwd = "tooor";
+    private static final String passwd = "soumia";
     private static String driver = "org.postgresql.Driver";
 
     private static Connection connect;
