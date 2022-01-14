@@ -28,8 +28,8 @@ public class DaoFactory {
         return new QuestionDAO();
     }
 
-    public static CompetanceDao getCompetenceDao(){
-        return new CompetanceDao();
+    public static CompetenceDao getCompetenceDao(){
+        return new CompetenceDao();
     }
 
     public static  ClassDao getClassDao(){ return  new ClassDao();}

@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompetanceDao implements DaoInterface<Competence> {
+public class CompetenceDao implements DaoInterface<Competence> {
     List<Competence> competences;
     Competence competence;
 
