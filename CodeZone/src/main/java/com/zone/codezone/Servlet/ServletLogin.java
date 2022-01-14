@@ -8,12 +8,12 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "ServletLogin", value = "/servlet-login")
+@WebServlet(name = "ServletLogin", urlPatterns = {"/login"})
 public class ServletLogin extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class ServletLogin extends HttpServlet {
             response.sendRedirect("Dashboard");
 
         } else {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("login");
         }
     }
 }

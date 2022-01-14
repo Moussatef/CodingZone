@@ -45,7 +45,9 @@ public class SqlQueries {
     public static <T>String getById(String tableName,T id) {
 
         String query ="SELECT * FROM "+tableName+" where id like'"+id+"'";
+
         return query;
+
 
     }
 
