@@ -80,6 +80,7 @@ public class SqlQueries {
             sb.append(coulumns[i]+"=?");
 
         }
+        sb.append(" WHERE id = '"+id+"'");
         return sb.toString();
     }
 
