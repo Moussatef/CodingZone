@@ -1,10 +1,7 @@
 package com.zone.codezone.Servlet;
 
 import com.zone.codezone.Dao.DaoFactory;
-import com.zone.codezone.Models.Choice;
-import com.zone.codezone.Models.Question;
-import com.zone.codezone.Models.Test;
-import com.zone.codezone.Models.TestResponse;
+import com.zone.codezone.Models.*;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -60,14 +57,16 @@ public class ResponseServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //change timer-response
         String choice_id = request.getParameter("choice");
+        TestCandidat testCandidat=(TestCandidat)request.getSession().getAttribute("test_details");
+       // Test test=DaoFactory.getTestDao().findById(((String) request.getSession().getAttribute("test_id")));
         if(choice_id !=null){
             Choice choice =DaoFactory.getDaoChoice().findById(choice_id);
-            Test test=DaoFactory.getTestDao().findById(((String) request.getSession().getAttribute("test_id")));
-            DaoFactory.getDaoTestResponse().insert(new TestResponse("id",choice,2,test,));
+            DaoFactory.getDaoTestResponse().insert(new TestResponse(null,question,choice,2,testCandidat));
         }
         else {
-
+            DaoFactory.getDaoTestResponse().insert(new TestResponse(null,question,null,2,testCandidat));
         }
         System.out.println(choice_id);
         doGet(request,response);

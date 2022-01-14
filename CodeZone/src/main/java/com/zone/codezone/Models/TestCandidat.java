@@ -6,14 +6,25 @@ public class TestCandidat {
     private Test test;
     private Learner learner;
 
+    public boolean isClosed() {
+        return isClosed;
+    }
+
+    public void setClosed(boolean closed) {
+        isClosed = closed;
+    }
+
+    private boolean isClosed;
+
     public TestCandidat() {
     }
 
-    public TestCandidat(String id, String candidat_code, Test test, Learner learner) {
+    public TestCandidat(String id, String candidate_code, Test test, Learner learner,boolean isClosed) {
         this.setId(id);
-        this.setCandidat_code(candidat_code);
+        this.setCandidat_code(candidate_code);
         this.setTest(test);
         this.setLearner(learner);
+        this.setClosed(isClosed);
     }
 
     public String getId() {

@@ -3,6 +3,7 @@ package com.zone.codezone.Servlet;
 import com.zone.codezone.Dao.DaoFactory;
 import com.zone.codezone.Models.Choice;
 import com.zone.codezone.Models.Question;
+import com.zone.codezone.Models.TestCandidat;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -18,6 +19,7 @@ public class LernerServlet extends HttpServlet {
     Question question;
     Choice choice;
     List<Choice> choices;
+    TestCandidat testCandidat;
 
 
     public List<Question> getQuestions(String id){
@@ -25,22 +27,31 @@ public class LernerServlet extends HttpServlet {
         return  DaoFactory.getQuestions().findQuestionsByTest(id);
     }
 
+    public TestCandidat getTestDetails(String code){
+
+        return  DaoFactory.getTestCandidateDao().findTestByCode(code);
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        questionList=getQuestions("1");
-        HttpSession session = request.getSession();
-        session.setAttribute("test_id", "1");
-        session.setAttribute("currentIndex", -1);
-        session.setAttribute("questions",questionList);
-        //questionList= getQuestions("1");
-        request.setAttribute("questions",questionList);
-        session.setAttribute("lastIndex", questionList.size()-1);
-        response.sendRedirect("Answer");
-       // request.getRequestDispatcher("Answer").forward(request,response);
+
+        request.getRequestDispatcher("/views/learnerLogin.jsp").forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
 
+        String code=request.getParameter("code");
+        testCandidat=getTestDetails(code);
+        questionList=getQuestions(testCandidat.getTest().getId());
+        session.setAttribute("test_id", testCandidat.getTest().getId());
+        session.setAttribute("test_details", testCandidat);
+        session.setAttribute("currentIndex", -1);
+        session.setAttribute("questions",questionList);
+        //questionList= getQuestions("1");
+        //request.setAttribute("questions",questionList);
+        session.setAttribute("lastIndex", questionList.size()-1);
+        response.sendRedirect("Answer");
     }
 }

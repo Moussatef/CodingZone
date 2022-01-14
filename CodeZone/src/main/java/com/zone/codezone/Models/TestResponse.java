@@ -11,12 +11,11 @@ public class TestResponse {
 
 
 
-    public TestResponse(String id, Choice choice, int timerResponse,Test test,TestCandidat testCondidat) {
+    public TestResponse(String id,Question question, Choice choice, int timerResponse,TestCandidat testCondidat) {
         this.setId( id);
         this.setChoice( choice);
         this.setTimerResponse(timerResponse);
         this.setQuestion(question);
-        this.setTest(test);
         this.setTestCondidat(testCondidat);
     }
 
