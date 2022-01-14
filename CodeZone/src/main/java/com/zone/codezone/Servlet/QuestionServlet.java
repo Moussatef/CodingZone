@@ -5,12 +5,16 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "MainServlet", urlPatterns = {""})
-public class MainServlet extends HttpServlet {
-
+@WebServlet(name = "QuestionServlet", urlPatterns = {"/test/question"})
+public class QuestionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+
+        if (request.getSession().getAttribute("username") == null) {
+            response.sendRedirect("/CodeZone/login");
+        } else {
+            request.getRequestDispatcher("/question.jsp").forward(request, response);
+        }
     }
 
     @Override

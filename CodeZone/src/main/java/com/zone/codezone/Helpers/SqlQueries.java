@@ -44,8 +44,9 @@ public class SqlQueries {
 
     public static <T>String getById(String tableName,T id) {
 
-        String query ="SELECT * FROM "+tableName+" where id="+id;
+        String query ="SELECT * FROM "+tableName+" WHERE id='"+id+"'";
         return query;
+
 
     }
 

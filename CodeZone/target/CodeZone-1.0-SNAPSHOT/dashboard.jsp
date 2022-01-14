@@ -20,7 +20,7 @@
     <input type="date" name="end_date" placeholder="End Date"/>
     <select name="competence"> <!-- get all competence then loop on it -->
 
-            <option value="0">Select Competence</option>
+        <option>Select Competence</option>
         <c:forEach items="${competence}" var="comp">
             <option value="${comp.getId()}">${comp.getCompetence_name()}</option>
         </c:forEach>

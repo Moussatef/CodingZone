@@ -50,18 +50,15 @@ public class CompetanceDao implements DaoInterface<Competence> {
     @Override
     public Competence findById(String id) {
         try {
-
             ResultSet result = Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery(
-                    SqlQueries.getById("competences",id));
-            if (result.first()) {
-                competence = new Competence(result.getString("id"), result.getString("competence_name"));
-            }
-            return competence;
+                    SqlQueries.getById("competences", id));
+            result.next();
+            competence = new Competence(result.getString("id"), result.getString("competence_name"));
         } catch (SQLException e) {
             e.printStackTrace();
-
             return null;
         }
+        return competence;
     }
 
     @Override
@@ -69,8 +66,8 @@ public class CompetanceDao implements DaoInterface<Competence> {
         try {
             PreparedStatement competenceStatement = Config.getInstance().prepareStatement(SqlQueries.insert("competences", 2));
 
-            competenceStatement.setString(2,competence.getId());
-            competenceStatement.setString(3,competence.getCompetence_name());
+            competenceStatement.setString(1,competence.getId());
+            competenceStatement.setString(2,competence.getCompetence_name());
             competenceStatement.executeUpdate();
         }
         catch (SQLException  e){
@@ -84,8 +81,8 @@ public class CompetanceDao implements DaoInterface<Competence> {
     public String update(Competence competence) {
         try {
             PreparedStatement competenceStatement = Config.getInstance().prepareStatement(SqlQueries.update("competences", new String[]{"id", "competence_name"}, competence.getId()));
-            competenceStatement.setString(2,competence.getId());
-            competenceStatement.setString(3,competence.getCompetence_name());
+            competenceStatement.setString(1,competence.getId());
+            competenceStatement.setString(2,competence.getCompetence_name());
             competenceStatement.executeUpdate();
         }catch(SQLException e){
             e.printStackTrace();

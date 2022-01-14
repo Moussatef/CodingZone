@@ -14,12 +14,14 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Random;
 
-@WebServlet(name = "DashboardServlet", urlPatterns = {"/Dashboard", "/Dashboard/*"})
+@WebServlet(name = "DashboardServlet", urlPatterns = {"/Dashboard"})
 public class DashboardServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         ArrayList<Competence> competences = DaoFactory.getCompetenceDao().findAll();
         request.setAttribute("competence", competences);
+
         if (request.getSession().getAttribute("username") == null) {
             response.sendRedirect("login");
         } else {
@@ -36,10 +38,10 @@ public class DashboardServlet extends HttpServlet {
         Date endDate = Date.valueOf(request.getParameter("end_date"));
         String comp = request.getParameter("competence");
 
-        Competence competence = new Competence("RFSNN1GEPM", comp);
+        Competence competence = DaoFactory.getCompetenceDao().findById(comp);
 
         Test test = new Test(id,title,startDate,endDate,competence);
-        System.out.println(DaoFactory.getTest().insert(test));
+        DaoFactory.getTest().insert(test);
 
     }
 

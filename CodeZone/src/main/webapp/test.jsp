@@ -29,7 +29,6 @@
             <option value="laravel">${comp}</option>
     </select>
     </c:forEach>
-
     <input type="submit" value="Submit"/>
 </form>
 </body>
