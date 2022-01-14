@@ -25,7 +25,7 @@ public abstract class DAO<T> {
      * Permet de mettre à jour les données d'une entrée dans la base
      * @param obj
      */
-    public abstract T update(T obj);
+    public abstract String update(T obj);
 
     /**
      * Permet la suppression d'une entrée de la base

@@ -1,30 +1,34 @@
 package com.zone.codezone.DaoImpl;
 
 import com.zone.codezone.Dao.DAO;
+import com.zone.codezone.Dao.DaoFactory;
 import com.zone.codezone.Dao.DaoInterface;
 import com.zone.codezone.Helpers.SqlQueries;
 import com.zone.codezone.Models.Choice;
+import com.zone.codezone.Models.Competence;
 import com.zone.codezone.Models.Question;
+import com.zone.codezone.Models.Test;
 import com.zone.codezone.config.Config;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class QuestionDAO extends DAO<Question> {
     Question question;
+    Competence competence = new Competence("UU","DATABASE");
+    Test test = new Test("vyyyuytg","Test", Date.valueOf("2002-10-10"),Date.valueOf("2010-10-10"),competence);
 
     public List<Question> findAll() {
+
         String query = "SELECT * FROM questions";
         List<Question> questionsList = new ArrayList<>();
         try {
             Statement statement = connectDB.createStatement();
             ResultSet queryResult = statement.executeQuery(query);
             while (queryResult.next()) {
-                questionsList.add(new Question(queryResult.getString("id"), queryResult.getString("content"), queryResult.getInt("time_s"), queryResult.getFloat("score")));
+                questionsList.add(new Question(queryResult.getString("id"), queryResult.getString("content"), queryResult.getInt("time_s"), queryResult.getFloat("score"),test));
             }
 
             return questionsList;
@@ -45,7 +49,8 @@ public class QuestionDAO extends DAO<Question> {
             System.out.println(SqlQueries.getAllWithWhere("questions","test_id like '"+id+"'"));
             ResultSet queryResult = statement.executeQuery(SqlQueries.getAllWithWhere("questions","test_id like '"+id+"'"));
             while (queryResult.next()) {
-                testQuestions.add(new Question(queryResult.getString("id"), queryResult.getString("content"), queryResult.getInt("time_s"), queryResult.getFloat("score")));
+                Test test= DaoFactory.getTestDao().findById(queryResult.getString("test_id"));
+                testQuestions.add(new Question(queryResult.getString("id"), queryResult.getString("content"), queryResult.getInt("time_s"), queryResult.getFloat("score"),test));
             }
 
             return testQuestions;
@@ -66,7 +71,7 @@ public class QuestionDAO extends DAO<Question> {
                     SqlQueries.getById("questions",id));
             if (queryResult.first()) {
                 //add question
-                question = new Question(queryResult.getString("id"), queryResult.getString("content"), queryResult.getInt("time_s"), queryResult.getFloat("score"));
+                question = new Question(queryResult.getString("id"), queryResult.getString("content"), queryResult.getInt("time_s"), queryResult.getFloat("score"),test);
 
             }
             return question;
@@ -80,13 +85,38 @@ public class QuestionDAO extends DAO<Question> {
     }
 
     @Override
-    public Question create(Question obj) {
-        return null;
+    public Question create(Question questionInsert) {
+        try {
+            PreparedStatement questionStatement = Config.getInstance().prepareStatement(SqlQueries.insert("questions", 5));
+            questionStatement.setString(1,questionInsert.getId());
+            questionStatement.setString(2,questionInsert.getContent());
+            questionStatement.setInt(3,questionInsert.getTime());
+            questionStatement.setFloat(4,questionInsert.getScore());
+            questionStatement.setString(5,questionInsert.getTest().getId());
+            System.out.println(questionStatement);
+            questionStatement.executeUpdate();
+        }
+        catch (SQLException  e){
+            e.printStackTrace();
+
+        }
+        return questionInsert;
     }
 
     @Override
-    public Question update(Question obj) {
-        return null;
+    public String update(Question questionUpdate) {
+        try {
+            PreparedStatement questionStatement = Config.getInstance().prepareStatement(SqlQueries.update("questions", new String[]{ "content","time","score","test_id"}, questionUpdate.getId()));
+
+            questionStatement.setString(1,questionUpdate.getContent());
+            questionStatement.setInt(2,questionUpdate.getTime());
+            questionStatement.setFloat(3,questionUpdate.getScore());
+            questionStatement.setString(4,questionUpdate.getTest().getId());
+            questionStatement.executeUpdate();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return questionUpdate.getId();
     }
 
     @Override
