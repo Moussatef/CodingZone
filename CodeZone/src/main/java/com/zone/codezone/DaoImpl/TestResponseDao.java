@@ -89,7 +89,7 @@ public class TestResponseDao implements DaoInterface<TestResponse> {
             PreparedStatement responseStatement = Config.getInstance().prepareStatement(SqlQueries.insert("test_responses", 5));
 
             responseStatement.setString(1,id);
-            responseStatement.setString(2,response.getTestCondidat().getId());
+            responseStatement.setString(2,response.getTestCandidate().getId());
             responseStatement.setString(3,response.getQuestion().getId());
             responseStatement.setString(4,response.getChoice().getId());
             responseStatement.setInt(5,response.getTimerResponse());
@@ -110,7 +110,7 @@ public class TestResponseDao implements DaoInterface<TestResponse> {
             responseStatement.setString(1,response.getId());
             responseStatement.setString(2,response.getQuestion().getId());
             responseStatement.setString(3,response.getChoice().getId());
-            // responseStatement.setString(4,response.getTestCandidate().getId());
+             responseStatement.setString(4,response.getTestCandidate().getId());
             responseStatement.executeUpdate();
         }catch(SQLException e){
             e.printStackTrace();

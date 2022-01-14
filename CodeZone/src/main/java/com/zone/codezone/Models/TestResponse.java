@@ -16,7 +16,7 @@ public class TestResponse {
         this.setChoice( choice);
         this.setTimerResponse(timerResponse);
         this.setQuestion(question);
-        this.setTestCondidat(testCondidat);
+        this.setTestCandidate(testCondidat);
     }
 
 
@@ -58,11 +58,11 @@ public class TestResponse {
         this.test = test;
     }
 
-    public TestCandidat getTestCondidat() {
+    public TestCandidat getTestCandidate() {
         return testCondidat;
     }
 
-    public void setTestCondidat(TestCandidat testCondidat) {
+    public void setTestCandidate(TestCandidat testCondidat) {
         this.testCondidat = testCondidat;
     }
 }
