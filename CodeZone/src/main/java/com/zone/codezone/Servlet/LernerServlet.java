@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "LernerServlet", value = "/LernerServlet")
+@WebServlet(name = "LernerServlet",urlPatterns = {"/LernerServlet"})
 public class LernerServlet extends HttpServlet {
 
     List<Question> questionList;
