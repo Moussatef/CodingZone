@@ -56,7 +56,7 @@ public class TestDao implements DaoInterface<Test> {
                     SqlQueries.getById("tests",id));
 
             if (result.first()) {
-                Competence competence= DaoFactory.getCompetenceDao().findById(result.getString("competence_id"));
+                Competence competence= DaoFactory.getCompetenceDao().findById(result.getString("competences_id"));
                 test = new Test(result.getString("id"),result.getString("title"),result.getDate("start_date"),result.getDate("end_date"),competence);
 
 

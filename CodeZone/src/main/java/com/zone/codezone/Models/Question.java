@@ -11,7 +11,7 @@ public class Question {
 
     public Question(String id, String content, int time, float score) {
 //, Test test
-// this.setId(id);
+         this.setId(id);
         this.setContent(content);
         this.setTime(time);
         this.setScore(score);

@@ -37,6 +37,25 @@ public class QuestionDAO extends DAO<Question> {
     }
 
 
+    public List<Question> findQuestionsByTest(String id) {
+        List<Question> testQuestions = new ArrayList<>();
+        testQuestions.clear();
+        try {
+            Statement statement = connectDB.createStatement();
+            System.out.println(SqlQueries.getAllWithWhere("questions","test_id like '"+id+"'"));
+            ResultSet queryResult = statement.executeQuery(SqlQueries.getAllWithWhere("questions","test_id like '"+id+"'"));
+            while (queryResult.next()) {
+                testQuestions.add(new Question(queryResult.getString("id"), queryResult.getString("content"), queryResult.getInt("time_s"), queryResult.getFloat("score")));
+            }
+
+            return testQuestions;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+        return testQuestions;
+    }
 
     @Override
     public Question find(String id) {

@@ -53,6 +53,27 @@ public class ChoiceDao implements DaoInterface<Choice> {
     }
 
 
+    public List<Choice> getQuestionChoices(String id) {
+        choices=new ArrayList<>();
+        try {
+
+            ResultSet result = Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery(
+                    SqlQueries.getAllWithWhere("choices","question_id like '"+id+"'"));
+            System.out.println(SqlQueries.getAllWithWhere("choices","question_id like '"+id+"'"));
+            choices.clear();
+            while (result.next()) {
+                Question question= DaoFactory.getQuestions().find(result.getString("question_id"));
+                Choice choice =new Choice(result.getString("id"),result.getString("content"),result.getBoolean("iscorrect"),question);
+                choices.add(choice);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return choices;
+    }
+
+
     @Override
     public Choice findById(String  id) {
         try {
