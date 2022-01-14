@@ -28,9 +28,17 @@ public class LernerServlet extends HttpServlet {
         return  DaoFactory.getQuestions().findQuestionsByTest(id);
     }
 
-    public TestCandidat getTestDetails(String code){
+
+
+    public TestCandidat getTest(String code){
 
         return  DaoFactory.getTestCandidateDao().findTestByCode(code);
+    }
+
+
+    public TestCandidat getTestDetails(String code){
+
+        return  DaoFactory.getTestCandidateDao().findOpenTestByCode(code);
     }
 
     @Override
@@ -45,7 +53,8 @@ public class LernerServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String code=request.getParameter("code");
 
-        if(getTestDetails(code).getId() != null) {
+        if(getTest(code).getId() != null) {
+            if(getTestDetails(code).getId() != null) {
             testCandidat=getTestDetails(code);
             questionList = getQuestions(testCandidat.getTest().getId());
             session.setAttribute("test_id", testCandidat.getTest().getId());
@@ -56,6 +65,10 @@ public class LernerServlet extends HttpServlet {
             //request.setAttribute("questions",questionList);
             session.setAttribute("lastIndex", questionList.size() - 1);
             response.sendRedirect("Answer");
+            }else{
+                //already passed
+                doGet(request,response);
+            }
         }else{
             doGet(request,response);
         }
