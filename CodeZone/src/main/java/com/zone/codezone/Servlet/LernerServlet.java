@@ -1,6 +1,7 @@
 package com.zone.codezone.Servlet;
 
 import com.zone.codezone.Dao.DaoFactory;
+import com.zone.codezone.Helpers.SqlQueries;
 import com.zone.codezone.Models.Choice;
 import com.zone.codezone.Models.Question;
 import com.zone.codezone.Models.TestCandidat;
@@ -35,23 +36,28 @@ public class LernerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        System.out.println(SqlQueries.update("learners",new String[]{"first_name","last_name"},"1"));
         request.getRequestDispatcher("/views/learnerLogin.jsp").forward(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-
         String code=request.getParameter("code");
-        testCandidat=getTestDetails(code);
-        questionList=getQuestions(testCandidat.getTest().getId());
-        session.setAttribute("test_id", testCandidat.getTest().getId());
-        session.setAttribute("test_details", testCandidat);
-        session.setAttribute("currentIndex", -1);
-        session.setAttribute("questions",questionList);
-        //questionList= getQuestions("1");
-        //request.setAttribute("questions",questionList);
-        session.setAttribute("lastIndex", questionList.size()-1);
-        response.sendRedirect("Answer");
+
+        if(getTestDetails(code).getId() != null) {
+            testCandidat=getTestDetails(code);
+            questionList = getQuestions(testCandidat.getTest().getId());
+            session.setAttribute("test_id", testCandidat.getTest().getId());
+            session.setAttribute("test_details", testCandidat);
+            session.setAttribute("currentIndex", -1);
+            session.setAttribute("questions", questionList);
+            //questionList= getQuestions("1");
+            //request.setAttribute("questions",questionList);
+            session.setAttribute("lastIndex", questionList.size() - 1);
+            response.sendRedirect("Answer");
+        }else{
+            doGet(request,response);
+        }
     }
 }

@@ -80,6 +80,7 @@ public class SqlQueries {
             sb.append(coulumns[i]+"=?");
 
         }
+        sb.append(" where id like '"+id+"'");
         return sb.toString();
     }
 
