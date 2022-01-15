@@ -15,7 +15,7 @@ public class QuestionServlet extends HttpServlet {
         if (request.getSession().getAttribute("username") == null) {
             response.sendRedirect(request.getContextPath()+"/login");
         } else {
-            request.getRequestDispatcher("question.jsp").forward(request, response);
+            request.getRequestDispatcher("/question.jsp").forward(request, response);
         }
     }
 
