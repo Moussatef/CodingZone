@@ -3,6 +3,7 @@ package com.zone.codezone.Dao;
 import com.zone.codezone.DaoImpl.*;
 
 import com.zone.codezone.Models.Learner;
+import com.zone.codezone.Models.TestCandidat;
 import com.zone.codezone.Models.TestResponse;
 
 public class DaoFactory {
@@ -28,10 +29,15 @@ public class DaoFactory {
         return new QuestionDAO();
     }
 
-    public static CompetanceDao getCompetenceDao(){
-        return new CompetanceDao();
+    public static CompetenceDao getCompetenceDao(){
+        return new CompetenceDao();
     }
 
     public static  ClassDao getClassDao(){ return  new ClassDao();}
+    public  static  TestDao getTestDao(){ return  new TestDao();}
+    public static TestCandidatDao getTestCandidateDao(){ return new TestCandidatDao();}
+
+
+
 }
 

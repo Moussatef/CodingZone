@@ -1,7 +1,9 @@
 package com.zone.codezone.DaoImpl;
 
+import com.zone.codezone.Dao.DaoFactory;
 import com.zone.codezone.Dao.DaoInterface;
 import com.zone.codezone.Helpers.SqlQueries;
+import com.zone.codezone.Helpers.UuidHelper;
 import com.zone.codezone.Models.*;
 import com.zone.codezone.config.Config;
 
@@ -10,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.zone.codezone.Dao.DaoFactory.getDaoChoice;
 
@@ -40,9 +43,10 @@ public class TestResponseDao implements DaoInterface<TestResponse> {
             responses.clear();
             while (result.next()) {
                 Choice choice=getDaoChoice().findById(result.getString("choice_id"));
-                Test test=new Test();
-                TestCandidat testCandidat= new TestCandidat();
-                TestResponse response = new TestResponse(result.getString("id"),choice,result.getInt("timer"),test,testCandidat);
+               // Test test=new Test();
+                TestCandidat testCandidat=DaoFactory.getTestCandidateDao().findById(result.getString("test_candidats_id"));
+                Question question= DaoFactory.getQuestions().find(result.getString("question_id"));
+                TestResponse response = new TestResponse(result.getString("id"),question,choice,result.getInt("timer"),testCandidat);
                 responses.add(response);
 
             }
@@ -60,10 +64,10 @@ public class TestResponseDao implements DaoInterface<TestResponse> {
                     SqlQueries.getById("test_responses",id));
 
             if (result.first()) {
-                Choice choice=getDaoChoice().findById(result.getString("choice_id"));
-                Test test=new Test();
-                TestCandidat testCandidat= new TestCandidat();
-                 testresponse = new TestResponse(result.getString("id"),choice,result.getInt("timer"),test,testCandidat);
+               Choice choice=getDaoChoice().findById(result.getString("choice_id"));
+               Question question= DaoFactory.getQuestions().find(result.getString("question_id"));
+                TestCandidat testCandidat=DaoFactory.getTestCandidateDao().findById(result.getString("test_candidats_id"));
+                 testresponse = new TestResponse(result.getString("id"),question,choice,result.getInt("timer"),testCandidat);
 
             }
             return testresponse;
@@ -77,12 +81,19 @@ public class TestResponseDao implements DaoInterface<TestResponse> {
     @Override
     public TestResponse insert(TestResponse response)  {
         try {
-            PreparedStatement responseStatement = Config.getInstance().prepareStatement(SqlQueries.insert("test_responses", 4));
 
-            responseStatement.setString(1,response.getId());
-            responseStatement.setString(2,response.getQuestion().getId());
-            responseStatement.setString(3,response.getChoice().getId());
-           // responseStatement.setString(4,response.getTestCandidate().getId());
+            String id= UuidHelper.getUuiId();
+            while (Objects.nonNull(findById(id))){
+                id=UuidHelper.getUuiId();
+            }
+            PreparedStatement responseStatement = Config.getInstance().prepareStatement(SqlQueries.insert("test_responses", 5));
+
+            responseStatement.setString(1,id);
+            responseStatement.setString(2,response.getTestCandidate().getId());
+            responseStatement.setString(3,response.getQuestion().getId());
+            responseStatement.setString(4,response.getChoice().getId());
+            responseStatement.setInt(5,response.getTimerResponse());
+            System.out.println(responseStatement);
             responseStatement.executeUpdate();
         }
         catch (SQLException  e){
@@ -99,7 +110,7 @@ public class TestResponseDao implements DaoInterface<TestResponse> {
             responseStatement.setString(1,response.getId());
             responseStatement.setString(2,response.getQuestion().getId());
             responseStatement.setString(3,response.getChoice().getId());
-            // responseStatement.setString(4,response.getTestCandidate().getId());
+             responseStatement.setString(4,response.getTestCandidate().getId());
             responseStatement.executeUpdate();
         }catch(SQLException e){
             e.printStackTrace();

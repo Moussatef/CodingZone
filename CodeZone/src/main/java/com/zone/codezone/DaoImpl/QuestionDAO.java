@@ -1,6 +1,7 @@
 package com.zone.codezone.DaoImpl;
 
 import com.zone.codezone.Dao.DAO;
+import com.zone.codezone.Dao.DaoFactory;
 import com.zone.codezone.Dao.DaoInterface;
 import com.zone.codezone.Helpers.SqlQueries;
 import com.zone.codezone.Models.Choice;
@@ -40,6 +41,26 @@ public class QuestionDAO extends DAO<Question> {
     }
 
 
+    public List<Question> findQuestionsByTest(String id) {
+        List<Question> testQuestions = new ArrayList<>();
+        testQuestions.clear();
+        try {
+            Statement statement = connectDB.createStatement();
+            System.out.println(SqlQueries.getAllWithWhere("questions","test_id like '"+id+"'"));
+            ResultSet queryResult = statement.executeQuery(SqlQueries.getAllWithWhere("questions","test_id like '"+id+"'"));
+            while (queryResult.next()) {
+                Test test= DaoFactory.getTestDao().findById(queryResult.getString("test_id"));
+                testQuestions.add(new Question(queryResult.getString("id"), queryResult.getString("content"), queryResult.getInt("time_s"), queryResult.getFloat("score"),test));
+            }
+
+            return testQuestions;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+        return testQuestions;
+    }
 
     @Override
     public Question find(String id) {

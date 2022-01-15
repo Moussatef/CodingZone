@@ -5,11 +5,18 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "QuestionServlet", value = "/QuestionServlet")
+
+
+@WebServlet(name = "QuestionServlet", urlPatterns = {"/test/question"})
 public class QuestionServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("question.jsp");
+
+        if (request.getSession().getAttribute("username") == null) {
+            response.sendRedirect(request.getContextPath()+"/login");
+        } else {
+            request.getRequestDispatcher("question.jsp").forward(request, response);
+        }
     }
 
     @Override

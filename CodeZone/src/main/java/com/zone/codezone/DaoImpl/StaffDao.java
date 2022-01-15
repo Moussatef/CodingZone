@@ -39,7 +39,7 @@ public class StaffDao implements DaoInterface<Staff> {
     public Boolean login(String username, String password){
 
         try {
-            String query = "SELECT * FROM stuff WHERE username = '" + username + "' AND password = '" + password + "'";
+            String query = "SELECT * FROM staff WHERE username = '" + username + "' AND password = '" + password + "'";
             PreparedStatement preparedStatement = Config.getInstance().prepareStatement(query);
             preparedStatement.execute();
             return preparedStatement.getResultSet().next();

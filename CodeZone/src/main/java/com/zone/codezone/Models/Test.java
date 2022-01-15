@@ -62,4 +62,10 @@ public class Test {
         this.competence = competence;
     }
 
+    @Override
+    public String toString() {
+        return "Test{" +
+                "competence=" + competence +
+                '}';
+    }
 }

@@ -4,12 +4,11 @@ public class Competence {
     private  String id;
     private  String competence_name;
 
-
-
     public Competence(){
 
     }
     public Competence( String id,String competence_name) {
+        this.setId(id);
         this.setCompetence_name(competence_name);
     }
 

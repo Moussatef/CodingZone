@@ -20,7 +20,7 @@ public class SqlQueries {
 
     public static String getAllWithWhere(String tableName, String condition) {
 
-        String query ="SELECT * FROM "+tableName+"where "+condition;
+        String query ="SELECT * FROM "+tableName+" where "+condition;
         return query;
 
     }
@@ -44,8 +44,10 @@ public class SqlQueries {
 
     public static <T>String getById(String tableName,T id) {
 
-        String query ="SELECT * FROM "+tableName+" where id="+id;
+        String query ="SELECT * FROM "+tableName+" where id like'"+id+"'";
+
         return query;
+
 
     }
 
@@ -80,7 +82,7 @@ public class SqlQueries {
             sb.append(coulumns[i]+"=?");
 
         }
-        sb.append(" WHERE id = '"+id+"'");
+        sb.append(" where id like '"+id+"'");
         return sb.toString();
     }
 
