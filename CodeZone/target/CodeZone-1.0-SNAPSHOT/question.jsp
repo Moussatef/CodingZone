@@ -1,4 +1,7 @@
-<%--
+<%@ page import="com.zone.codezone.Models.Test" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.zone.codezone.Dao.DaoFactory" %><%--
   Created by IntelliJ IDEA.
   User: otman
   Date: 10/01/2022
@@ -6,6 +9,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<% List<Test> testList = DaoFactory.getTestDao().findAll(); %>
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -33,19 +37,22 @@
             <label for="time">Question Time (S) :</label>
         </div>
 
-
         <div class="form-floating mb-3">
             <input type="text" name="score" class="form-control" id="score" placeholder="example">
             <label for="score">Question Score :</label>
         </div>
 
 
-        <div class="form-floating mb-3">
-            <input type="text" name="test_id" class="form-control" id="test_id" placeholder="example">
-            <label for="test_id">For Test</label>
-        </div>
 
-        <button type="submit" class="btn btn-secondary">Save</button>
+
+        <select class="form-select" name="test_id" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <% for (Test test : testList){%>
+                <option value="<%= test.getId()  %>"><%= test.getTitle().toUpperCase() %></option>
+            <% }%>
+        </select>
+
+        <button type="submit" class="btn btn-secondary w-50 mt-5">Save</button>
     </form>
 </div>
 
