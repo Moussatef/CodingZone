@@ -1,6 +1,7 @@
 package com.zone.codezone.Servlet;
 
 import com.zone.codezone.Dao.DaoFactory;
+import com.zone.codezone.Helpers.MailHelper;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -13,6 +14,7 @@ public class ServletLogin extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        MailHelper.sendEmail("kabrane.soumia@gmail.com","test","it work");
         request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
