@@ -53,7 +53,7 @@ public class TestCandidatDao implements DaoInterface<TestCandidat> {
                     SqlQueries.getAllWithWhere("test_learners","learner_code like '"+code+"'"));
             if (queryResult.first()) {
                  testCandidat=new TestCandidat(queryResult.getString("id"),queryResult.getString("learner_code"),DaoFactory.getTestDao().findById(queryResult.getString("test_id")), DaoFactory.getDaoLearner().findById(queryResult.getString("learner_id")),queryResult.getBoolean("isclosed"));
-                updateTestCandidateStatus(testCandidat.getId());
+
 
             }
 

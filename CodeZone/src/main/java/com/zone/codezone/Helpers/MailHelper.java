@@ -35,9 +35,9 @@ public class MailHelper {
             msg.addHeader("format", "flowed");
             msg.addHeader("Content-Transfer-Encoding", "8bit");
 
-            msg.setFrom(new InternetAddress("Youcode@school.com", "Youcode Safi"));
+            msg.setFrom(new InternetAddress("youcode.quiz@gmail.com", "Youcode Safi"));
 
-            msg.setReplyTo(InternetAddress.parse("Youcode@school.com", false));
+            msg.setReplyTo(InternetAddress.parse("youcode.quiz@gmail.com", false));
 
             msg.setSubject(subject, "UTF-8");
 

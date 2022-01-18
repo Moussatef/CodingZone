@@ -12,7 +12,7 @@ public class DaoFactory {
         return new LearnDao();
     }
 
-    public  static DaoInterface<TestResponse> getDaoTestResponse(){
+    public  static TestResponseDao getDaoTestResponse(){
         return new TestResponseDao();
     }
 

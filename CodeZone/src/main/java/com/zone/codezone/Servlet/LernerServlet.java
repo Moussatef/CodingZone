@@ -44,7 +44,7 @@ public class LernerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        System.out.println(SqlQueries.update("learners",new String[]{"first_name","last_name"},"1"));
+        System.out.println(SqlQueries.update("learners",new String[]{"first_name "," , last_name"},"1"));
         request.getRequestDispatcher("/views/learnerLogin.jsp").forward(request,response);
     }
 
@@ -54,8 +54,9 @@ public class LernerServlet extends HttpServlet {
         String code=request.getParameter("code");
 
         if(getTest(code).getId() != null) {
-            if(getTestDetails(code).getId() != null) {
             testCandidat=getTestDetails(code);
+            if(testCandidat.getId() != null) {
+            //testCandidat=getTestDetails(code);
             questionList = getQuestions(testCandidat.getTest().getId());
             session.setAttribute("test_id", testCandidat.getTest().getId());
             session.setAttribute("test_details", testCandidat);

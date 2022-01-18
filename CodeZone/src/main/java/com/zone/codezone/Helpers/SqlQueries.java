@@ -92,4 +92,12 @@ public class SqlQueries {
         String query ="DELETE FROM "+tableName+" WHERE id="+id;
         return query;
     }
+
+    public static String getScore(String code){
+        return "select sum(score) as \"learner_score\" from test_responses \n" +
+                "INNER JOIN questions ON test_responses.question_id like questions.id \n" +
+                "INNER JOIN choices ON test_responses.choices_id like choices.id \n" +
+                "INNER JOIN test_learners ON test_responses.test_candidats_id like test_learners.id \n" +
+                "where choices.iscorrect='true' and test_learners.learner_code like '"+code+"'";
+    }
 }

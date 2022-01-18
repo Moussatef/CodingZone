@@ -1,6 +1,7 @@
 package com.zone.codezone.Servlet;
 
 import com.zone.codezone.Dao.DaoFactory;
+import com.zone.codezone.Helpers.MailHelper;
 import com.zone.codezone.Models.*;
 
 import javax.servlet.*;
@@ -47,6 +48,8 @@ public class ResponseServlet extends HttpServlet {
             request.getRequestDispatcher("/views/response.jsp").forward(request,response);
 
         }else if(((int)request.getSession().getAttribute("currentIndex")) >((List<Question>)request.getSession().getAttribute("questions")).size()-2){
+            double score=DaoFactory.getDaoTestResponse().getLearnerScore("ZEZ34");
+            MailHelper.sendEmail("kabrane.soumia@gmail.com","test","your score is "+score);
             request.getRequestDispatcher("/views/ThankYou.jsp").forward(request,response);
         }else{
             request.getRequestDispatcher("/index.jsp").forward(request,response);

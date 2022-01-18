@@ -110,11 +110,28 @@ public class TestResponseDao implements DaoInterface<TestResponse> {
             responseStatement.setString(1,response.getId());
             responseStatement.setString(2,response.getQuestion().getId());
             responseStatement.setString(3,response.getChoice().getId());
-             responseStatement.setString(4,response.getTestCandidate().getId());
+            responseStatement.setString(4,response.getTestCandidate().getId());
             responseStatement.executeUpdate();
         }catch(SQLException e){
             e.printStackTrace();
         }
         return response.getId();
+    }
+
+    public double getLearnerScore(String code){
+        try {
+
+            ResultSet result = Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery(
+                    SqlQueries.getScore(code));
+
+            if (result.first()) {
+                return result.getDouble("learner_score");
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        return  0;
     }
 }
