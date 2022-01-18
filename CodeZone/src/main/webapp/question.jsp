@@ -43,14 +43,70 @@
         </div>
 
 
-
-
-        <select class="form-select" name="test_id" aria-label="Default select example">
+        <select class="form-select my-2" name="test_id" aria-label="Default select example">
             <option selected>Open this select menu</option>
             <% for (Test test : testList){%>
                 <option value="<%= test.getId()  %>"><%= test.getTitle().toUpperCase() %></option>
             <% }%>
         </select>
+        <button class="btn btn-secondary w-50 my-5">Next</button>
+
+
+        <div class="input-group mb-3">
+            <div class="input-group-text">
+                <span class="">is correct </span>
+                <input class="form-radio-input mt-0 mx-3" type="radio" name="flexRadioDefault" value="" aria-label="radio for following text input">
+            </div>
+            <div class="form-floating w-100">
+                <input type="text" name="chose_one" class="form-control " id="chose_one" placeholder="example">
+                <label for="chose_one">Chose One :</label>
+            </div>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-text">
+                <span class="">is correct </span>
+                <input class="form-radio-input mt-0 mx-3" type="radio" name="flexRadioDefault" value="" aria-label="radio for following text input">
+            </div>
+            <div class="form-floating w-100">
+                <input type="text" name="chose_tow" class="form-control" id="chose_tow" placeholder="example">
+                <label for="chose_tow">Chose tow :</label>
+            </div>
+        </div>
+
+
+        <div class="input-group mb-3">
+            <div class="input-group-text">
+                <span class="">is correct </span>
+                <input class="form-radio-input mt-0 mx-3" type="radio" name="flexRadioDefault" value="" aria-label="radio for following text input">
+            </div>
+            <div class="form-floating w-100">
+                <input type="text" name="chose_three" class="form-control" id="chose_three" placeholder="example">
+                <label for="chose_three">Chose three :</label>
+            </div>
+        </div>
+
+
+        <div class="input-group mb-3">
+            <div class="input-group-text">
+                <span class="">is correct </span>
+                <input class="form-radio-input mt-0 mx-3" type="radio" name="flexRadioDefault" value="" aria-label="radio for following text input">
+            </div>
+            <div class="form-floating w-100">
+                <input type="text" name="chose_four" class="form-control" id="chose_four" placeholder="example">
+                <label for="chose_four">Chose four :</label>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
 
         <button type="submit" class="btn btn-secondary w-50 mt-5">Save</button>
     </form>
