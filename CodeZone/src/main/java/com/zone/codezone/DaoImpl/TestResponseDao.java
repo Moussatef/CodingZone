@@ -86,15 +86,28 @@ public class TestResponseDao implements DaoInterface<TestResponse> {
             while (Objects.nonNull(findById(id))){
                 id=UuidHelper.getUuiId();
             }
-            PreparedStatement responseStatement = Config.getInstance().prepareStatement(SqlQueries.insert("test_responses", 5));
+            if(response.getChoice()!=null)
+            {
+                PreparedStatement responseStatement = Config.getInstance().prepareStatement(SqlQueries.insert("test_responses", 5));
+                responseStatement.setString(1,id);
+                responseStatement.setString(2,response.getTestCandidate().getId());
+                responseStatement.setString(3,response.getQuestion().getId());
+                responseStatement.setString(4,response.getChoice().getId());
+                responseStatement.setInt(5,response.getTimerResponse());
+                responseStatement.executeUpdate();
+                System.out.println(responseStatement);
+            }
+            else{
+                PreparedStatement responseStatement = Config.getInstance().prepareStatement(SqlQueries.insert("test_responses", 4));
+                responseStatement.setString(1,id);
+                responseStatement.setString(2,response.getTestCandidate().getId());
+                responseStatement.setString(3,response.getQuestion().getId());
+                responseStatement.setInt(4,response.getTimerResponse());
+                responseStatement.executeUpdate();
+                System.out.println(responseStatement);
+            }
 
-            responseStatement.setString(1,id);
-            responseStatement.setString(2,response.getTestCandidate().getId());
-            responseStatement.setString(3,response.getQuestion().getId());
-            responseStatement.setString(4,response.getChoice().getId());
-            responseStatement.setInt(5,response.getTimerResponse());
-            System.out.println(responseStatement);
-            responseStatement.executeUpdate();
+
         }
         catch (SQLException  e){
             e.printStackTrace();

@@ -61,6 +61,9 @@
             <div class="p-5 row">
 
                 <div class="mt-5 p-5 col-8 mx-auto">
+                    <div class="row justify-content-end">
+                        <button class="btn btn-light" style="width: 70px;" id="timer"></button>
+                    </div>
                     <div class="row">
                         <progress id="file" max="<%=max%>" value="<%=value%>"> </progress>
                     </div>
@@ -71,7 +74,7 @@
                     <p class="text-start fw-bold "><%=question.getContent()%></p>
                 </div>
                 <br>
-                <form action="Answer" method="post" class="col-8 mx-auto">
+                <form action="Answer" method="post" class="col-8 mx-auto" id="formAnswer">
                     <% for (Choice choice:choices){ %>
                     <div class="inputGroup bg-white d-flex ">
                         <input id="<%=choice.getId()%>" class="radiochoice" type="radio" name="choice" value="<%= choice.getId()%>">
@@ -90,5 +93,22 @@
 
             </div>
         </div>
+
 </body>
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+    let i = 0;
+    const x = setInterval(function () {
+        i++;
+        document.getElementById("timer").innerHTML = i + "s ";
+
+        if (i ===<%=question.getTime()%>) {
+            clearInterval(x);
+            document.getElementById("formAnswer").submit();
+        }
+    }, 1000);
+</script>
+
 </html>

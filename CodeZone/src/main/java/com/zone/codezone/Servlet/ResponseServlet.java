@@ -49,7 +49,7 @@ public class ResponseServlet extends HttpServlet {
 
         }else if(((int)request.getSession().getAttribute("currentIndex")) >((List<Question>)request.getSession().getAttribute("questions")).size()-2){
             double score=DaoFactory.getDaoTestResponse().getLearnerScore("ZEZ34");
-            MailHelper.sendEmail("kabrane.soumia@gmail.com","test","your score is "+score);
+            MailHelper.sendEmail("kabrane.soumia@gmail.com","test",""+score);
             request.getRequestDispatcher("/views/ThankYou.jsp").forward(request,response);
         }else{
             request.getRequestDispatcher("/index.jsp").forward(request,response);
