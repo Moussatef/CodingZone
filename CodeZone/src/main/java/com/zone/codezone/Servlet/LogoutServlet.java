@@ -5,17 +5,13 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "MainServlet", urlPatterns = {""})
-public class MainServlet extends HttpServlet {
-
+@WebServlet(name = "LogoutServlet", value = "/logout")
+public class LogoutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        if (request.getSession().getAttribute("username") == null) {
-            response.sendRedirect("login");
-        } else {
-            request.getRequestDispatcher("dashboard.jsp").forward(request, response);
-        }
+        HttpSession session = request.getSession();
+        session.invalidate();
+        response.sendRedirect("login");
     }
 
     @Override

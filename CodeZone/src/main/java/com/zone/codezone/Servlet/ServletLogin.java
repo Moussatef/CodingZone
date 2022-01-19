@@ -13,7 +13,11 @@ public class ServletLogin extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        if (request.getSession().getAttribute("username") != null) {
+            response.sendRedirect("dashboard");
+        } else {
+            request.getRequestDispatcher("login.jsp").forward(request, response);
+        }
     }
 
     @Override
@@ -25,7 +29,7 @@ public class ServletLogin extends HttpServlet {
         if (DaoFactory.getDaoStaff().login(username, password)) {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
-            response.sendRedirect("Dashboard");
+            response.sendRedirect("dashboard");
 
         } else {
             response.sendRedirect("login");

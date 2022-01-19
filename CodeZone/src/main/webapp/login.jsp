@@ -9,12 +9,26 @@
 <html>
 <head>
     <title>Login</title>
-</head>
+    <link rel="stylesheet" href="resources/main.css">
+    </head>
 <body>
-<form action="login" method="post">
-    <input type="text" name="username" placeholder="Username"/>
-    <input type="password" name="password" placeholder="Password"/>
-    <input type="submit" value="Submit"/>
-</form>
+<div class="container">
+    <div class="column">
+        <img src="resources/login.png" alt="login image">
+    </div>
+    <div class="column">
+        <div class="content">
+            <h1>Hello There,</h1>
+            <p>Please type your email & password below to connect</p>
+        </div>
+
+        <form action="login" method="post">
+            <input type="text" name="username" placeholder="Username" required/>
+            <input type="password" name="password" placeholder="Password" required/>
+            <input type="submit" value="Login"/>
+        </form>
+    </div>
+</div>
+
 </body>
 </html>
