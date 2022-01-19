@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: otman
@@ -54,8 +55,12 @@
         <tr>
             <td>
                 <div class="form-floating mb-3">
-                    <input type="text" name="test_id" class="form-control" id="test_id" placeholder="example">
-                    <label for="test_id">For Test</label>
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected>Select Test</option>
+                        <c:forEach items="${tests}" var="test">
+                            <option value="${test.getId()}">${test.getTitle()}</option>
+                        </c:forEach>
+                    </select>
                 </div>
 
             </td>

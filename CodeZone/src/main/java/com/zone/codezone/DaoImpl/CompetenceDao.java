@@ -52,8 +52,10 @@ public class CompetenceDao implements DaoInterface<Competence> {
         try {
             ResultSet result = Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery(
                     SqlQueries.getById("competences", id));
-            result.next();
-            competence = new Competence(result.getString("id"), result.getString("competence_name"));
+
+            if(result.next()){
+                competence = new Competence(result.getString("id"), result.getString("competence_name"));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             return null;

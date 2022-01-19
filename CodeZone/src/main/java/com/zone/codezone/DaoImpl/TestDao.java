@@ -29,18 +29,18 @@ public class TestDao implements DaoInterface<Test> {
     }
 
     @Override
-    public List<Test> findAll() {
-        tests=new ArrayList<>();
+    public ArrayList<Test> findAll() {
+        ArrayList<Test> tests = new ArrayList<>();
         try {
 
             ResultSet result = Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery(
                     SqlQueries.getAll("tests"));
-            tests.clear();
+
             while (result.next()) {
-                Competence competence= DaoFactory.getCompetenceDao().findById(result.getString("competence_id"));
+                Competence competence= DaoFactory.getCompetenceDao().findById(result.getString("competences_id"));
                 Test test = new Test(result.getString("id"),result.getString("title"),result.getDate("start_date"),result.getDate("end_date"),competence);
                 tests.add(test);
-
+                System.out.println(test);
             }
         } catch (SQLException e) {
             e.printStackTrace();
