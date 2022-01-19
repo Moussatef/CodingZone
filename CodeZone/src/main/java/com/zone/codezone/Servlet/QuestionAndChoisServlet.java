@@ -14,8 +14,8 @@ import java.io.PrintWriter;
 
 @WebServlet(name = "QuestionAndChoisServlet", urlPatterns = {"/test/question-chois"})
 public class QuestionAndChoisServlet extends HttpServlet {
-    Question question;
-    Choice choice;
+    Question question = null;
+    Choice choice = null;
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -39,14 +39,19 @@ public class QuestionAndChoisServlet extends HttpServlet {
         String chose_four = request.getParameter("chose_four");
 
         System.out.println(content);
-        out.println("<h2>"+radioBtn+" </h2>");
 
         question = DaoFactory.getQuestions().create(new Question(question_id,content,time,score,test));
+        if(question != null) {
 
-        DaoFactory.getDaoChoice().insert(new Choice(UuidHelper.getUuiId(),chose_one,radioBtn.equals("chose_one"),question));
-        DaoFactory.getDaoChoice().insert(new Choice(UuidHelper.getUuiId(),chose_tow,radioBtn.equals("chose_tow"),question));
-        DaoFactory.getDaoChoice().insert(new Choice(UuidHelper.getUuiId(),chose_three,radioBtn.equals("chose_three"),question));
-        DaoFactory.getDaoChoice().insert(new Choice(UuidHelper.getUuiId(),chose_four,radioBtn.equals("chose_four"),question));
+          Choice choice1 =  DaoFactory.getDaoChoice().insert(new Choice(UuidHelper.getUuiId(), chose_one, radioBtn.equals("chose_one"), question));
+          Choice choice2 =  DaoFactory.getDaoChoice().insert(new Choice(UuidHelper.getUuiId(), chose_tow, radioBtn.equals("chose_tow"), question));
+          Choice choice3 =  DaoFactory.getDaoChoice().insert(new Choice(UuidHelper.getUuiId(), chose_three, radioBtn.equals("chose_three"), question));
+          Choice choice4 =  DaoFactory.getDaoChoice().insert(new Choice(UuidHelper.getUuiId(), chose_four, radioBtn.equals("chose_four"), question));
+          if (choice1 != null && choice2 != null && choice3 != null && choice4 != null ){
+
+              response.sendRedirect("candidate-test");
+          }
+        }
 
         System.out.println(question.getContent());
 
