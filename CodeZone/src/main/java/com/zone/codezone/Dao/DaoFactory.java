@@ -8,7 +8,7 @@ import com.zone.codezone.Models.TestResponse;
 
 public class DaoFactory {
 
-    public static DaoInterface<Learner> getDaoLearner(){
+    public static LearnDao getDaoLearner(){
         return new LearnDao();
     }
 

@@ -100,4 +100,10 @@ public class SqlQueries {
                 "INNER JOIN test_learners ON test_responses.test_candidats_id like test_learners.id \n" +
                 "where choices.iscorrect='true' and test_learners.learner_code like '"+code+"'";
     }
+
+    public static String getLearnerByCode(String code){
+        return "select email from learners \n" +
+                "INNER JOIN test_learners ON learner_id like learners.id \n" +
+                "where test_learners.learner_code like '"+code+"'";
+    }
 }

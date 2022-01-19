@@ -59,6 +59,7 @@ public class LernerServlet extends HttpServlet {
             //testCandidat=getTestDetails(code);
             questionList = getQuestions(testCandidat.getTest().getId());
             session.setAttribute("test_id", testCandidat.getTest().getId());
+            session.setAttribute("code",code);
             session.setAttribute("test_details", testCandidat);
             session.setAttribute("currentIndex", -1);
             session.setAttribute("questions", questionList);

@@ -41,18 +41,7 @@ public class MailHelper {
 
             msg.setSubject(subject, "UTF-8");
 
-
-            String sb = "<head>" +
-                    "<style type=\"text/css\">" +
-                    "  .red { color: #f00; }" +
-                    "</style>" +
-                    "</head>" +
-                    "<h1 class=\"red\">" + msg.getSubject() + "</h1>" +
-                    "<p>" +
-                    "Lorem ipsum dolor sit amet, <em>consectetur</em> adipisicing elit, " +
-                    "sed do eiusmod tempor incididunt ut labore et dolore magna <strong>" +
-                    "aliqua</strong>.</p>";
-            msg.setContent(scoreMail(body), "text/html; charset=utf-8");
+            msg.setContent(body, "text/html; charset=utf-8");
             msg.saveChanges();
 
             //msg.setText(body, "Html");
@@ -69,8 +58,23 @@ public class MailHelper {
             e.printStackTrace();
         }
     }
-    public  static String  scoreMail(String score){
 
+
+
+    public  static void  scoreMail(String toEmail,String testTitle,String score){
+        String sb="Your score in "+testTitle+" is : ";
+        sendEmail( toEmail, "Test Score",mailContent(sb,score));
+    }
+
+
+    public  static void  codeMail(String code,String test_title,String email,String stuffname,Date date_beg, Date date_end){
+
+        String sb= stuffname +"Assigned a New  Test for you <br/>"+" Test Tile : "+test_title+"<br/>Available From "+date_beg +" to "+date_end;
+        sendEmail( email, "New Test",mailContent(sb,code));
+    }
+
+
+    public static String mailContent(String body,String codeOrScore){
         return "<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "\n" +
@@ -80,37 +84,7 @@ public class MailHelper {
                 "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
                 "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n" +
                 "    <style type=\"text/css\">\n" +
-                "        @media screen {\n" +
-                "            @font-face {\n" +
-                "                font-family: 'Lato';\n" +
-                "                font-style: normal;\n" +
-                "                font-weight: 400;\n" +
-                "                src: local('Lato Regular'), local('Lato-Regular'), url(https://fonts.gstatic.com/s/lato/v11/qIIYRU-oROkIk8vfvxw6QvesZW2xOQ-xsNqO47m55DA.woff) format('woff');\n" +
-                "            }\n" +
-                "\n" +
-                "            @font-face {\n" +
-                "                font-family: 'Lato';\n" +
-                "                font-style: normal;\n" +
-                "                font-weight: 700;\n" +
-                "                src: local('Lato Bold'), local('Lato-Bold'), url(https://fonts.gstatic.com/s/lato/v11/qdgUG4U09HnJwhYI-uK18wLUuEpTyoUstqEm5AMlJo4.woff) format('woff');\n" +
-                "            }\n" +
-                "\n" +
-                "            @font-face {\n" +
-                "                font-family: 'Lato';\n" +
-                "                font-style: italic;\n" +
-                "                font-weight: 400;\n" +
-                "                src: local('Lato Italic'), local('Lato-Italic'), url(https://fonts.gstatic.com/s/lato/v11/RYyZNoeFgb0l7W3Vu1aSWOvvDin1pK8aKteLpeZ5c0A.woff) format('woff');\n" +
-                "            }\n" +
-                "\n" +
-                "            @font-face {\n" +
-                "                font-family: 'Lato';\n" +
-                "                font-style: italic;\n" +
-                "                font-weight: 700;\n" +
-                "                src: local('Lato Bold Italic'), local('Lato-BoldItalic'), url(https://fonts.gstatic.com/s/lato/v11/HkF_qI1x_noxlxhrhMQYELO3LdcAZYWl9Si6vvxL-qU.woff) format('woff');\n" +
-                "            }\n" +
-                "        }\n" +
-                "\n" +
-                "        /* CLIENT-SPECIFIC STYLES */\n" +
+                "       \n" +
                 "        body,\n" +
                 "        table,\n" +
                 "        td,\n" +
@@ -175,8 +149,6 @@ public class MailHelper {
                 "</head>\n" +
                 "\n" +
                 "<body style=\"background-color: #f4f4f4; margin: 0 !important; padding: 0 !important;\">\n" +
-                "    <!-- HIDDEN PREHEADER TEXT -->\n" +
-                "    <div style=\"display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;\"> We're thrilled to have you here! Get ready to dive into your new account. </div>\n" +
                 "    <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">\n" +
                 "        <!-- LOGO -->\n" +
                 "        <tr>\n" +
@@ -193,7 +165,7 @@ public class MailHelper {
                 "                <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"max-width: 600px;\">\n" +
                 "                    <tr>\n" +
                 "                        <td bgcolor=\"#ffffff\" align=\"center\" valign=\"top\" style=\"padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;\">\n" +
-                "                            <h1 style=\"font-size: 48px; font-weight: 400; margin: 2;\">Your Test Score!</h1> <img src=\"https://simplon.co/storage/36009/logo-youcode-ma.png\" width=\"125\" height=\"120\" style=\"display: block; border: 0px;\" />\n" +
+                "                            <h1 style=\"font-size: 48px; font-weight: 400; margin: 2;\">Youcode Test</h1> <img src=\"https://simplon.co/storage/36009/logo-youcode-ma.png\" width=\"125\" height=\"120\" style=\"display: block; border: 0px;\" />\n" +
                 "                        </td>\n" +
                 "                    </tr>\n" +
                 "                </table>\n" +
@@ -204,7 +176,7 @@ public class MailHelper {
                 "                <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" style=\"max-width: 600px;\">\n" +
                 "                    <tr>\n" +
                 "                        <td bgcolor=\"#ffffff\" align=\"left\" style=\"padding: 20px 30px 40px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;\">\n" +
-                "                            <p style=\"margin: 0;\">Your test score is :</p>\n" +
+                "                            <p style=\"margin: 0;\"> "+body+ "</p>\n" +
                 "                        </td>\n" +
                 "                    </tr>\n" +
                 "                    <tr>\n" +
@@ -214,19 +186,21 @@ public class MailHelper {
                 "                                    <td bgcolor=\"#ffffff\" align=\"center\" style=\"padding: 20px 30px 60px 30px;\">\n" +
                 "                                        <table border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\n" +
                 "                                            <tr>\n" +
-                "                                                <td align=\"center\" style=\"border-radius: 3px;\" bgcolor=\"#6eb5f0\"><a href=\"#\" target=\"_blank\" style=\"font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #6eb5f0; display: inline-block;\">"+score+"</a></td>\n" +
+                "                                                <td align=\"center\" style=\"border-radius: 3px;\" bgcolor=\"#6eb5f0\"><span style=\"font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #6eb5f0; display: inline-block;\">"+codeOrScore+"</span></td>\n" +
                 "                                            </tr>\n" +
                 "                                        </table>\n" +
                 "                                    </td>\n" +
                 "                                </tr>\n" +
                 "                            </table>\n" +
                 "                        </td>\n" +
-                "                    </tr> <!-- COPY -->\n" +
+                "                    </tr> \n" +
+                "                </table>\n" +
+                "            </td>\n" +
+                "        </tr>\n" +
                 "    </table>\n" +
                 "</body>\n" +
                 "\n" +
                 "</html>";
-
     }
 
 }
