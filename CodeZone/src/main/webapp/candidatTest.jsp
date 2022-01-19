@@ -36,9 +36,7 @@
                 <div>
                     Email : <%= learner.getEmail()%>
                 </div>
-
             </div>
-
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
             </div>
