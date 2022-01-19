@@ -4,12 +4,12 @@ public class Question {
     private String id;
     private String content;
     private int time ;
-    private float score;
+    private double score;
     private Test test;
 
 
 
-    public Question(String id, String content, int time, float score,Test test) {
+    public Question(String id, String content, int time, double score,Test test) {
 //, Test test
         this.setId(id);
         this.setContent(content);
@@ -42,11 +42,11 @@ public class Question {
         this.time = time;
     }
 
-    public float getScore() {
+    public double getScore() {
         return score;
     }
 
-    public void setScore(float score) {
+    public void setScore(double score) {
         this.score = score;
     }
 

@@ -91,14 +91,13 @@ public class QuestionDAO extends DAO<Question> {
             questionStatement.setString(1,questionInsert.getId());
             questionStatement.setString(2,questionInsert.getContent());
             questionStatement.setInt(3,questionInsert.getTime());
-            questionStatement.setFloat(4,questionInsert.getScore());
-            questionStatement.setString(5,questionInsert.getTest().getId());
+            questionStatement.setString(4,questionInsert.getTest().getId());
+            questionStatement.setDouble(5,questionInsert.getScore());
             System.out.println(questionStatement);
             questionStatement.executeUpdate();
         }
         catch (SQLException  e){
             e.printStackTrace();
-
         }
         return questionInsert;
     }
@@ -110,8 +109,8 @@ public class QuestionDAO extends DAO<Question> {
 
             questionStatement.setString(1,questionUpdate.getContent());
             questionStatement.setInt(2,questionUpdate.getTime());
-            questionStatement.setFloat(3,questionUpdate.getScore());
-            questionStatement.setString(4,questionUpdate.getTest().getId());
+            questionStatement.setString(3,questionUpdate.getTest().getId());
+            questionStatement.setDouble(4,questionUpdate.getScore());
             questionStatement.executeUpdate();
         }catch(SQLException e){
             e.printStackTrace();
