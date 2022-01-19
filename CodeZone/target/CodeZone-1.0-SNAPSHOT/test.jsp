@@ -10,7 +10,6 @@
 
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.Formatter" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Create Test</title>
