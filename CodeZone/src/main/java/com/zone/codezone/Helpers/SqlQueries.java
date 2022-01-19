@@ -25,7 +25,6 @@ public class SqlQueries {
 
     }
 
-
     public static String getColumnData(String tableName, String column) {
 
         String query ="SELECT "+column+" FROM "+tableName;
@@ -101,9 +100,23 @@ public class SqlQueries {
                 "where choices.iscorrect='true' and test_learners.learner_code like '"+code+"'";
     }
 
+    public static String getTestTotal(String id){
+        return "select sum(score) as \"total_score\" from questions \n" +
+                "INNER JOIN tests ON tests.id like questions.test_id \n" +
+                "where tests.id like '"+id+"'";
+    }
+
     public static String getLearnerByCode(String code){
         return "select email from learners \n" +
                 "INNER JOIN test_learners ON learner_id like learners.id \n" +
                 "where test_learners.learner_code like '"+code+"'";
+    }
+
+
+    public static String getOpenTest(String code,String date){
+        return "select test_learners.* from test_learners  \n" +
+                "INNER JOIN learners ON test_learners.learner_id like learners.id \n" +
+                "INNER JOIN tests on test_learners.test_id like tests.id\n" +
+                "where test_learners.learner_code like '"+code+"' and tests.start_date <= '"+date+"' and  tests.end_date >= '"+date+"'";
     }
 }

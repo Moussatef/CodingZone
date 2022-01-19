@@ -106,4 +106,21 @@ public class TestDao implements DaoInterface<Test> {
         }
         return test.getId();
     }
+
+    public double getTestTotalScore(String id){
+        try {
+
+            ResultSet result = Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery(
+                    SqlQueries.getTestTotal(id));
+
+            if (result.first()) {
+                return result.getDouble("total_score");
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        return  0;
+    }
 }

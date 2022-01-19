@@ -8,6 +8,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class ResponseServlet extends HttpServlet {
     Question question;
     Choice choice;
     List<Choice> choices;
-
+    private static final DecimalFormat df = new DecimalFormat("0.00");
 
     public List<Choice> getChoices(String id){
       return DaoFactory.getDaoChoice().getQuestionChoices(id);
@@ -49,7 +50,10 @@ public class ResponseServlet extends HttpServlet {
 
         }else if(((int)request.getSession().getAttribute("currentIndex")) >((List<Question>)request.getSession().getAttribute("questions")).size()-2){
             double score=DaoFactory.getDaoTestResponse().getLearnerScore((String)(request.getSession().getAttribute("code")));
-            MailHelper.scoreMail(DaoFactory.getDaoLearner().findEmailByCode((String)(request.getSession().getAttribute("code"))),DaoFactory.getTestDao().findById((String)request.getSession().getAttribute("test_id")).getTitle(),""+score);
+            double total=DaoFactory.getTestDao().getTestTotalScore((String)request.getSession().getAttribute("test_id"));
+            double learnerPer=(score/total)*100;
+            System.out.println(score+"ff "+total+" k "+learnerPer);
+            MailHelper.scoreMail(DaoFactory.getDaoLearner().findEmailByCode((String)(request.getSession().getAttribute("code"))),DaoFactory.getTestDao().findById((String)request.getSession().getAttribute("test_id")).getTitle(),df.format(learnerPer)+" % ");
             request.getRequestDispatcher("/views/ThankYou.jsp").forward(request,response);
         }else{
             request.getRequestDispatcher("/index.jsp").forward(request,response);
