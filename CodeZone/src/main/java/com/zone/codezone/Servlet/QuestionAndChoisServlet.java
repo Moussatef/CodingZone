@@ -43,14 +43,14 @@ public class QuestionAndChoisServlet extends HttpServlet {
         question = DaoFactory.getQuestions().create(new Question(question_id,content,time,score,test));
         if(question != null) {
 
-          Choice choice1 =  DaoFactory.getDaoChoice().insert(new Choice(UuidHelper.getUuiId(), chose_one, radioBtn.equals("chose_one"), question));
-          Choice choice2 =  DaoFactory.getDaoChoice().insert(new Choice(UuidHelper.getUuiId(), chose_tow, radioBtn.equals("chose_tow"), question));
-          Choice choice3 =  DaoFactory.getDaoChoice().insert(new Choice(UuidHelper.getUuiId(), chose_three, radioBtn.equals("chose_three"), question));
-          Choice choice4 =  DaoFactory.getDaoChoice().insert(new Choice(UuidHelper.getUuiId(), chose_four, radioBtn.equals("chose_four"), question));
-          if (choice1 != null && choice2 != null && choice3 != null && choice4 != null ){
+            Choice choice1 =  DaoFactory.getDaoChoice().insert(new Choice(UuidHelper.getUuiId(), chose_one, radioBtn.equals("chose_one"), question));
+            Choice choice2 =  DaoFactory.getDaoChoice().insert(new Choice(UuidHelper.getUuiId(), chose_tow, radioBtn.equals("chose_tow"), question));
+            Choice choice3 =  DaoFactory.getDaoChoice().insert(new Choice(UuidHelper.getUuiId(), chose_three, radioBtn.equals("chose_three"), question));
+            Choice choice4 =  DaoFactory.getDaoChoice().insert(new Choice(UuidHelper.getUuiId(), chose_four, radioBtn.equals("chose_four"), question));
+            if (choice1 != null && choice2 != null && choice3 != null && choice4 != null ){
 
-              response.sendRedirect("candidate-test");
-          }
+                response.sendRedirect("candidate-test");
+            }
         }
 
         System.out.println(question.getContent());

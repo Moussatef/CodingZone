@@ -1,12 +1,7 @@
 <%@ page import="com.zone.codezone.Models.Test" %>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%@ page import="com.zone.codezone.Models.Test" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.zone.codezone.Dao.DaoFactory" %><%--
-
   Created by IntelliJ IDEA.
   User: otman
   Date: 10/01/2022
@@ -26,7 +21,6 @@
 </head>
 <body>
 <div class="container text-center">
-
     <form action="question-chois" method="post">
         <h1>TEST Question</h1>
         <div class="form-floating mb-3">
