@@ -87,8 +87,23 @@ public class TestCandidatDao implements DaoInterface<TestCandidat> {
     }
 
     @Override
-    public TestCandidat insert(TestCandidat object) {
-        return null;
+    public TestCandidat insert(TestCandidat testCandidat) {
+
+        try {
+            PreparedStatement testCandidatStatement = Config.getInstance().prepareStatement(SqlQueries.insert("test_learners", 5));
+            testCandidatStatement.setString(1,testCandidat.getId());
+            testCandidatStatement.setString(2,testCandidat.getTest().getId());
+            testCandidatStatement.setString(3,testCandidat.getLearner().getId());
+            testCandidatStatement.setString(4,testCandidat.getCandidat_code());
+            testCandidatStatement.setBoolean(5,testCandidat.isClosed());
+            System.out.println(testCandidatStatement);
+            testCandidatStatement.executeUpdate();
+        }
+        catch (SQLException  e){
+            e.printStackTrace();
+
+        }
+        return testCandidat;
     }
 
     @Override

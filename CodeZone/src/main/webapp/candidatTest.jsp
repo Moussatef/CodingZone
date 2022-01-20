@@ -1,6 +1,7 @@
 <%@ page import="com.zone.codezone.Models.Learner" %>
 <%@ page import="com.zone.codezone.Dao.DaoFactory" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.zone.codezone.Models.Test" %><%--
   Created by IntelliJ IDEA.
   User: otman
   Date: 19/01/2022
@@ -20,29 +21,34 @@
 
 </head>
 <body>
-<h1 class="text-center">Candidate Test</h1>
+<h1 class="text-center my-5">Candidate Test</h1>
+<%
+    List<Learner> learnerList = DaoFactory.getDaoLearner().findAll();
+    List<Test> testList = DaoFactory.getTestDao().findAll();
+%>
 <div class="container">
-
-
-    <%
-        List<Learner> learnerList = DaoFactory.getDaoLearner().findAll();
-        for (Learner learner : learnerList) { %>
-    <div class="card my-3">
-        <div class="d-flex justify-content-between">
-            <div class="card-body">
-                <div>
-                    Name : <%= learner.getFirstName() + " " + learner.getLastName()%>
-                </div>
-                <div>
-                    Email : <%= learner.getEmail()%>
-                </div>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
-            </div>
+    <form action="" method="POST">
+        <select class="form-select my-3" name="test">
+            <option selected>Select test</option>
+            <%
+                for (Test test : testList) {
+            %>
+                <option value="<%=test.getId()%>"><%=  test.getTitle()  %></option>
+            <%}%>
+        </select>
+        <select class="form-control my-3" size="10" name="candidats" multiple>
+            <%
+                for (Learner learner : learnerList) {
+            %>
+            <option value="<%=learner.getId()%>">
+                <%= "Name : " + learner.getFirstName() + " " + learner.getLastName() %>
+            </option>
+            <%}%>
+        </select>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
         </div>
-    </div>
-    <% } %>
+    </form>
 </div>
 </body>
 </html>
