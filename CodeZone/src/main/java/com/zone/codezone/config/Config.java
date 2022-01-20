@@ -6,14 +6,14 @@ import java.sql.SQLException;
 
 public class Config {
 
-    //private static String url = "jdbc:postgresql://localhost:5432/codingZonedb";
+    private static String url = "jdbc:postgresql://localhost:5432/codingZonedb";
 
-    private static String url = "jdbc:postgresql://localhost:5432/codeZone";
+    //private static String url = "jdbc:postgresql://localhost:5432/codeZone";
 
     private static String user = "postgres";
-    //private static String passwd = "soumia";
+    private static String passwd = "soumia";
+    //private static String passwd = "4094";
     //private static String passwd = "tooor";
-    private static String passwd = "4094";
     private static String driver = "org.postgresql.Driver";
     private static Connection connect;
 
