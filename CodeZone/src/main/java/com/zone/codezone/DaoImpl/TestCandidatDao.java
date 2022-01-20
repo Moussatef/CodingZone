@@ -9,6 +9,8 @@ import com.zone.codezone.config.Config;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import static com.zone.codezone.Dao.DaoFactory.getDaoChoice;
@@ -48,12 +50,14 @@ public class TestCandidatDao implements DaoInterface<TestCandidat> {
     public TestCandidat findTestByCode(String code) {
         TestCandidat testCandidat=new TestCandidat();
         try {
-
+            String pattern = "dd-MM-yyyy";
+            String dateInString =new SimpleDateFormat(pattern).format(new Date());
             ResultSet queryResult = Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery(
-                    SqlQueries.getAllWithWhere("test_learners","learner_code like '"+code+"'"));
+                    SqlQueries.getOpenTest(code,dateInString));
+            System.out.println( SqlQueries.getOpenTest(code,dateInString));
             if (queryResult.first()) {
                  testCandidat=new TestCandidat(queryResult.getString("id"),queryResult.getString("learner_code"),DaoFactory.getTestDao().findById(queryResult.getString("test_id")), DaoFactory.getDaoLearner().findById(queryResult.getString("learner_id")),queryResult.getBoolean("isclosed"));
-                updateTestCandidateStatus(testCandidat.getId());
+
 
             }
 

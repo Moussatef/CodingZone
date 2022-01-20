@@ -8,11 +8,11 @@ import com.zone.codezone.Models.TestResponse;
 
 public class DaoFactory {
 
-    public static DaoInterface<Learner> getDaoLearner(){
+    public static LearnDao getDaoLearner(){
         return new LearnDao();
     }
 
-    public  static DaoInterface<TestResponse> getDaoTestResponse(){
+    public  static TestResponseDao getDaoTestResponse(){
         return new TestResponseDao();
     }
 
