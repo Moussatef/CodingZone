@@ -69,14 +69,15 @@ public class ResponseServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //change timer-response
         String choice_id = request.getParameter("choice");
+        int time = Integer.parseInt(request.getParameter("time"));
         TestCandidat testCandidat=(TestCandidat)request.getSession().getAttribute("test_details");
        // Test test=DaoFactory.getTestDao().findById(((String) request.getSession().getAttribute("test_id")));
         if(choice_id !=null){
             Choice choice =DaoFactory.getDaoChoice().findById(choice_id);
-            DaoFactory.getDaoTestResponse().insert(new TestResponse(null,question,choice,2,testCandidat));
+            DaoFactory.getDaoTestResponse().insert(new TestResponse(null,question,choice,time,testCandidat));
         }
         else {
-            DaoFactory.getDaoTestResponse().insert(new TestResponse(null,question,null,2,testCandidat));
+            DaoFactory.getDaoTestResponse().insert(new TestResponse(null,question,null,time,testCandidat));
         }
         System.out.println(choice_id);
         doGet(request,response);

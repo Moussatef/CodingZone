@@ -88,21 +88,24 @@ public class TestResponseDao implements DaoInterface<TestResponse> {
             }
             if(response.getChoice()!=null)
             {
-                PreparedStatement responseStatement = Config.getInstance().prepareStatement(SqlQueries.insert("test_responses", 5));
+                PreparedStatement responseStatement = Config.getInstance().prepareStatement(SqlQueries.insert("test_responses", 6));
                 responseStatement.setString(1,id);
                 responseStatement.setString(2,response.getTestCandidate().getId());
                 responseStatement.setString(3,response.getQuestion().getId());
                 responseStatement.setString(4,response.getChoice().getId());
                 responseStatement.setInt(5,response.getTimerResponse());
+                responseStatement.setString(6,response.getTestCandidate().getTest().getId());
                 responseStatement.executeUpdate();
                 System.out.println(responseStatement);
             }
             else{
-                PreparedStatement responseStatement = Config.getInstance().prepareStatement(SqlQueries.insert("test_responses", 4));
+                PreparedStatement responseStatement = Config.getInstance().prepareStatement(SqlQueries.insert("test_responses (\n" +
+                        "\tid, test_candidats_id, question_id, choices_id,tests_id)", 5));
                 responseStatement.setString(1,id);
                 responseStatement.setString(2,response.getTestCandidate().getId());
                 responseStatement.setString(3,response.getQuestion().getId());
                 responseStatement.setInt(4,response.getTimerResponse());
+                responseStatement.setString(5,response.getTestCandidate().getTest().getId());
                 responseStatement.executeUpdate();
                 System.out.println(responseStatement);
             }

@@ -82,7 +82,7 @@
                     </div>
 
                     <% }%>
-
+                    <input type="text" name="time" value="" id="timeQ" hidden/>
                     <div class="d-flex justify-content-end">
                         <button class="btn" type="submit">Skip</button>
                         &nbsp;
@@ -101,6 +101,7 @@
     const x = setInterval(function () {
         i++;
         document.getElementById("timer").innerHTML = i + "s ";
+        document.getElementById("timeQ").value=i;
 
         if (i ===<%=question.getTime()%>) {
 
