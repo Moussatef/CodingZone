@@ -56,7 +56,10 @@ public class ResponseServlet extends HttpServlet {
             MailHelper.scoreMail(DaoFactory.getDaoLearner().findEmailByCode((String)(request.getSession().getAttribute("code"))),DaoFactory.getTestDao().findById((String)request.getSession().getAttribute("test_id")).getTitle(),df.format(learnerPer)+" % ");
             request.getRequestDispatcher("/views/ThankYou.jsp").forward(request,response);
         }else{
-            request.getRequestDispatcher("/index.jsp").forward(request,response);
+            response.sendRedirect("LernerServlet");
+        }
+        else {
+            response.sendRedirect("LernerServlet");
         }
 
 
