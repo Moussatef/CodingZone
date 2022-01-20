@@ -72,6 +72,14 @@
             <p>click here to add a new quiz! </p>
         </div>
     </a>
+    <a href="test/question">
+        <div class="card square new-quiz">
+            <img src="resources/icons/add-square.svg" alt="add quiz">
+            <h4>Add new question</h4>
+            <p>click here to add a new Question for test! </p>
+        </div>
+    </a>
 </main>
+
 </body>
 </html>
