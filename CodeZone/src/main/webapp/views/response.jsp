@@ -86,7 +86,7 @@
                     <div class="d-flex justify-content-end">
                         <button class="btn" type="submit">Skip</button>
                         &nbsp;
-                        <button class="btn btn-primary" type="submit">Next</button>
+                        <button class="btn btn-primary" id="btnsub" type="submit">Next</button>
                     </div>
 
                 </form>
@@ -96,15 +96,15 @@
 
 </body>
 <script>
-    if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
-    }
+    document.getElementById("btnsub").onclick = function() { clearInterval(x);};
     let i = 0;
     const x = setInterval(function () {
         i++;
         document.getElementById("timer").innerHTML = i + "s ";
 
         if (i ===<%=question.getTime()%>) {
+
+            document.getElementById("btnsub").disabled = true;
             clearInterval(x);
             document.getElementById("formAnswer").submit();
         }
