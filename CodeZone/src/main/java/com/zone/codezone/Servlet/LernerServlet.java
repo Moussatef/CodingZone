@@ -44,7 +44,7 @@ public class LernerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        System.out.println(SqlQueries.update("learners",new String[]{"first_name "," , last_name"},"1"));
+        System.out.println(request.getAttribute("error"));
         request.getRequestDispatcher("/views/learnerLogin.jsp").forward(request,response);
     }
 
@@ -69,9 +69,11 @@ public class LernerServlet extends HttpServlet {
             response.sendRedirect("Answer");
             }else{
                 //already passed
+                request.setAttribute("error","You have already passed this test");
                 doGet(request,response);
             }
         }else{
+            request.setAttribute("error","Invalid Code Or The test are not available in this date");
             doGet(request,response);
         }
     }
