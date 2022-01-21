@@ -76,7 +76,7 @@
     <div class="card add-form">
         <h2>Create Question</h2>
 
-        <form method="post" action="${pageContext.request.contextPath}/question-chois">
+        <form method="post" action="${pageContext.request.contextPath}/test/question-chois">
             <div class="input-group">
                 <label for="content">Question Content </label>
                 <input type="text" name="content" id="content" placeholder="content" required/>
