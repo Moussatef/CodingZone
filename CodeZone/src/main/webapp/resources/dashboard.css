@@ -86,6 +86,7 @@ main {
 header.card {
     display: flex;
     justify-content: space-between;
+    margin-left: 315px;
 }
 
 header.card .content p:first-child {
