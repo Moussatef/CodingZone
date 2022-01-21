@@ -24,20 +24,15 @@ public class LernerServlet extends HttpServlet {
 
 
     public List<Question> getQuestions(String id){
-
         return  DaoFactory.getQuestions().findQuestionsByTest(id);
     }
 
-
-
     public TestCandidat getTest(String code){
-
         return  DaoFactory.getTestCandidateDao().findTestByCode(code);
     }
 
 
     public TestCandidat getTestDetails(String code){
-
         return  DaoFactory.getTestCandidateDao().findOpenTestByCode(code);
     }
 
@@ -66,7 +61,7 @@ public class LernerServlet extends HttpServlet {
             session.setAttribute("lastIndex", questionList.size() - 1);
             response.sendRedirect("Answer");
             }else{
-                //already passed
+                // already passed
                 doGet(request,response);
             }
         }else{

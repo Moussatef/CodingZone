@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 
-@WebServlet(name = "TestServlet", value = "/add-test")
+@WebServlet(name = "TestServlet", urlPatterns = {"/add-test"})
 public class TestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
