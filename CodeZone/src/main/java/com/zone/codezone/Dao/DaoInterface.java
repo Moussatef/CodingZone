@@ -1,6 +1,5 @@
 package com.zone.codezone.Dao;
 
-import com.zone.codezone.connection.DatabaseConnection;
 
 import java.sql.Connection;
 import java.util.List;

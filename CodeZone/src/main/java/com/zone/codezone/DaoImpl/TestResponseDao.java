@@ -86,15 +86,31 @@ public class TestResponseDao implements DaoInterface<TestResponse> {
             while (Objects.nonNull(findById(id))){
                 id=UuidHelper.getUuiId();
             }
-            PreparedStatement responseStatement = Config.getInstance().prepareStatement(SqlQueries.insert("test_responses", 5));
+            if(response.getChoice()!=null)
+            {
+                PreparedStatement responseStatement = Config.getInstance().prepareStatement(SqlQueries.insert("test_responses", 6));
+                responseStatement.setString(1,id);
+                responseStatement.setString(2,response.getTestCandidate().getId());
+                responseStatement.setString(3,response.getQuestion().getId());
+                responseStatement.setString(4,response.getChoice().getId());
+                responseStatement.setInt(5,response.getTimerResponse());
+                responseStatement.setString(6,response.getTestCandidate().getTest().getId());
+                responseStatement.executeUpdate();
+                System.out.println(responseStatement);
+            }
+            else{
+                PreparedStatement responseStatement = Config.getInstance().prepareStatement(SqlQueries.insert("test_responses (\n" +
+                        "\tid, test_candidats_id, question_id, choices_id,tests_id)", 5));
+                responseStatement.setString(1,id);
+                responseStatement.setString(2,response.getTestCandidate().getId());
+                responseStatement.setString(3,response.getQuestion().getId());
+                responseStatement.setInt(4,response.getTimerResponse());
+                responseStatement.setString(5,response.getTestCandidate().getTest().getId());
+                responseStatement.executeUpdate();
+                System.out.println(responseStatement);
+            }
 
-            responseStatement.setString(1,id);
-            responseStatement.setString(2,response.getTestCandidate().getId());
-            responseStatement.setString(3,response.getQuestion().getId());
-            responseStatement.setString(4,response.getChoice().getId());
-            responseStatement.setInt(5,response.getTimerResponse());
-            System.out.println(responseStatement);
-            responseStatement.executeUpdate();
+
         }
         catch (SQLException  e){
             e.printStackTrace();
@@ -110,11 +126,28 @@ public class TestResponseDao implements DaoInterface<TestResponse> {
             responseStatement.setString(1,response.getId());
             responseStatement.setString(2,response.getQuestion().getId());
             responseStatement.setString(3,response.getChoice().getId());
-             responseStatement.setString(4,response.getTestCandidate().getId());
+            responseStatement.setString(4,response.getTestCandidate().getId());
             responseStatement.executeUpdate();
         }catch(SQLException e){
             e.printStackTrace();
         }
         return response.getId();
+    }
+
+    public double getLearnerScore(String code){
+        try {
+
+            ResultSet result = Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery(
+                    SqlQueries.getScore(code));
+
+            if (result.first()) {
+                return result.getDouble("learner_score");
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        return  0;
     }
 }

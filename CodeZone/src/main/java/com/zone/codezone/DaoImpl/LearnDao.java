@@ -109,4 +109,22 @@ public class LearnDao implements DaoInterface<Learner> {
         return learner.getId();
     }
 
+
+    public String findEmailByCode(String code) {
+        try {
+
+            ResultSet result = Config.getInstance().createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE).executeQuery(
+                    SqlQueries.getLearnerByCode(code));
+            if (result.first()) {
+                return result.getString("email");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            return null;
+        }
+        return "";
+    }
+
 }

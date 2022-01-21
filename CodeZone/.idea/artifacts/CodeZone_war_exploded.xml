@@ -20,6 +20,8 @@
           <element id="library" level="project" name="Maven: jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:1.2.4" />
           <element id="library" level="project" name="Maven: jakarta.servlet:jakarta.servlet-api:4.0.2" />
           <element id="library" level="project" name="Maven: jakarta.el:jakarta.el-api:3.0.2" />
+          <element id="library" level="project" name="Maven: com.sun.mail:javax.mail:1.6.2" />
+          <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
         </element>
       </element>
       <element id="directory" name="META-INF">

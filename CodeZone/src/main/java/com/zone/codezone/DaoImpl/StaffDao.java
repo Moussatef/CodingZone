@@ -39,8 +39,9 @@ public class StaffDao implements DaoInterface<Staff> {
     public Boolean login(String username, String password){
 
         try {
-            String query = "SELECT * FROM staff WHERE username = '" + username + "' AND password = '" + password + "'";
+            String query = "SELECT * FROM staff WHERE username like '" + username + "' AND password like '" + password + "'";
             PreparedStatement preparedStatement = Config.getInstance().prepareStatement(query);
+            System.out.println(preparedStatement);
             preparedStatement.execute();
             return preparedStatement.getResultSet().next();
         } catch (Exception e) {

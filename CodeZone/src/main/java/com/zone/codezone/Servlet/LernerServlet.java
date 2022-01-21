@@ -24,22 +24,27 @@ public class LernerServlet extends HttpServlet {
 
 
     public List<Question> getQuestions(String id){
+
         return  DaoFactory.getQuestions().findQuestionsByTest(id);
     }
 
+
+
     public TestCandidat getTest(String code){
+
         return  DaoFactory.getTestCandidateDao().findTestByCode(code);
     }
 
 
     public TestCandidat getTestDetails(String code){
+
         return  DaoFactory.getTestCandidateDao().findOpenTestByCode(code);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        System.out.println(SqlQueries.update("learners",new String[]{"first_name","last_name"},"1"));
+        System.out.println(request.getAttribute("error"));
         request.getRequestDispatcher("/views/learnerLogin.jsp").forward(request,response);
     }
 
@@ -49,10 +54,12 @@ public class LernerServlet extends HttpServlet {
         String code=request.getParameter("code");
 
         if(getTest(code).getId() != null) {
-            if(getTestDetails(code).getId() != null) {
             testCandidat=getTestDetails(code);
+            if(testCandidat.getId() != null) {
+            //testCandidat=getTestDetails(code);
             questionList = getQuestions(testCandidat.getTest().getId());
             session.setAttribute("test_id", testCandidat.getTest().getId());
+            session.setAttribute("code",code);
             session.setAttribute("test_details", testCandidat);
             session.setAttribute("currentIndex", -1);
             session.setAttribute("questions", questionList);
@@ -61,10 +68,12 @@ public class LernerServlet extends HttpServlet {
             session.setAttribute("lastIndex", questionList.size() - 1);
             response.sendRedirect("Answer");
             }else{
-                // already passed
+                //already passed
+                request.setAttribute("error","You have already passed this test");
                 doGet(request,response);
             }
         }else{
+            request.setAttribute("error","Invalid Code Or The test are not available in this date");
             doGet(request,response);
         }
     }
