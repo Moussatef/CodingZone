@@ -43,7 +43,7 @@
     </style>
     <title>You-code</title>
 </head>
-<body>
+<body onbeforeunload="return 'Are you sure you want to leave the page?';">
 
 <div class="container-fluid code-container m-0 p-0">
     <div class="row">
