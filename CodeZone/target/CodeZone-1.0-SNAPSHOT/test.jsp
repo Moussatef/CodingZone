@@ -1,4 +1,6 @@
 <%@ taglib prefix="z" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <z:layout pageTitle="Create Test">
 <div class="card add-form">
             <h2>Create Test</h2>

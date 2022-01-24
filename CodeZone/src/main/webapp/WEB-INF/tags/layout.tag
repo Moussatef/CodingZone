@@ -2,7 +2,6 @@
 <%@ attribute name="pageTitle" required="true" type="java.lang.String" %>
 <%@ tag import="java.util.Calendar" %>
 <%@ tag import="java.util.Formatter" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <%--
