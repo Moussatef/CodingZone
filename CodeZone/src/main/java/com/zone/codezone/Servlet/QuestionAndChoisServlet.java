@@ -1,6 +1,7 @@
 package com.zone.codezone.Servlet;
 
 import com.zone.codezone.Dao.DaoFactory;
+import com.zone.codezone.Helpers.MailHelper;
 import com.zone.codezone.Helpers.UuidHelper;
 import com.zone.codezone.Models.Choice;
 import com.zone.codezone.Models.Question;
@@ -48,8 +49,11 @@ public class QuestionAndChoisServlet extends HttpServlet {
             Choice choice3 =  DaoFactory.getDaoChoice().insert(new Choice(UuidHelper.getUuiId(), chose_three, radioBtn.equals("chose_three"), question));
             Choice choice4 =  DaoFactory.getDaoChoice().insert(new Choice(UuidHelper.getUuiId(), chose_four, radioBtn.equals("chose_four"), question));
             if (choice1 != null && choice2 != null && choice3 != null && choice4 != null ){
+                HttpSession session = request.getSession();
+                session.setAttribute("messageSuccess", "Question save with success ! ");
 
-                response.sendRedirect("candidate-test");
+
+                response.sendRedirect(request.getContextPath()+"/dashboard");
             }
         }
 
