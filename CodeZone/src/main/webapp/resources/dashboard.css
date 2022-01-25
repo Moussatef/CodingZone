@@ -3,41 +3,49 @@
     src: url("fonts/GothamRounded-Book.woff");
     font-weight: 400;
 }
+
 @font-face {
     font-family: "Gotham Rounded";
     src: url("fonts/GothamRounded-Bold.woff");
     font-weight: 700;
 }
+
 @font-face {
     font-family: "Gotham Rounded";
     src: url("fonts/GothamRounded-Medium.woff");
     font-weight: 500;
 }
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Gotham Rounded", sans-serif;
     --main: #4A00E0;
-    --grey:#B7B7B7;
+    --grey: #B7B7B7;
 }
+
 a {
     text-decoration: none;
     color: inherit;
 }
+
 li {
     list-style: none;
 }
+
 body {
     background: #F8F8F8;
     margin: 20px;
 }
+
 .card {
     background: white;
     border-radius: 10px;
     padding: 30px;
-margin-bottom: 15px;
+    margin-bottom: 15px;
 }
+
 aside {
     position: fixed;
     width: 300px;
@@ -58,9 +66,11 @@ aside {
     border-radius: 5px;
     margin-bottom: 10px;
 }
+
 .menu li.active {
     background: #F6FAFF;
 }
+
 .menu li:hover {
     background: #F6FAFF;
 }
@@ -76,7 +86,7 @@ aside {
 }
 
 .logout a:hover {
-background: #ffe5e5;
+    background: #ffe5e5;
 }
 .d-flex{
     display: flex;
@@ -98,6 +108,7 @@ main {
 header.card {
     display: flex;
     justify-content: space-between;
+    margin-left: 315px;
 }
 
 header.card .content p:first-child {
@@ -109,6 +120,7 @@ header .user {
     align-items: center;
     gap: 10px;
 }
+
 header .user .avatar {
     width: 42px;
     height: 42px;
@@ -116,6 +128,7 @@ header .user .avatar {
     border-radius: 50%;
     overflow: hidden;
 }
+
 header .user div:nth-child(2) {
     margin-right: 40px;
 }
@@ -125,6 +138,7 @@ header .user .avatar img {
     width: 100%;
     object-fit: cover;
 }
+
 header .user p:first-child {
     font-weight: 500;
 }
@@ -132,6 +146,37 @@ header .user p:first-child {
 header .user p:last-child {
     font-size: 12px;
     color: var(--grey);
+}
+
+.settings .menu {
+    visibility: hidden;
+    margin-top: 30px;
+    background: white;
+    padding: 20px;
+    position: absolute;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #0000000a;
+    right: 0;
+    transition: 200ms;
+    opacity: 0;
+    transform: translateY(-20px);
+
+}
+
+header .settings .menu li {
+    font-size: 14px;
+    color: #5b5b5b;
+    padding: 10px;
+    margin-bottom: 0;
+}
+
+.open {
+    transform: rotate(180deg);
+}
+.menu.active {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .square {
@@ -154,16 +199,18 @@ header .user p:last-child {
     font-size: 18px;
     margin: 5px 0;
 }
+
 .square:hover {
     box-shadow: 0 0 11px rgb(33 33 33 / 8%);
 }
 
-input,select {
+input, select {
     padding: 20px;
     border: 2px solid #F1F1F1;
     border-radius: 5px;
     outline: none;
 }
+
 input[type="submit"] {
     color: white;
     border: 1px solid var(--main);
@@ -171,20 +218,24 @@ input[type="submit"] {
     cursor: pointer;
 
 }
-input:invalid:focus,select:invalid:focus {
+
+input:invalid:focus, select:invalid:focus {
     border: 2px solid red;
     color: red;
     background: #ffe5e5;
 }
+
 input:valid:not(input[type="submit"]) {
     border-color: #11df26;
     color: #11df26;
     background: #F2FEF3;
 }
+
 .error p {
     color: red;
     margin-bottom: 10px;
 }
+
 input[type="submit"]:hover {
     background: #300096;
 }
@@ -195,13 +246,16 @@ input[type="submit"]:hover {
     gap: 10px;
     margin-bottom: 20px;
 }
+
 .form-group {
     display: flex;
     gap: 20px;
 }
+
 .form-group .input-group {
     flex: 1;
 }
+
 .add-form h2 {
     color: var(--main);
     margin-bottom: 30px;
@@ -211,6 +265,8 @@ button {
     border: none;
     background: unset;
     cursor: pointer;
+    outline: none;
+    transition: 250ms;
 }
 
 label {

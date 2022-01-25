@@ -57,6 +57,11 @@
                 <div class="d-flex mt-4">
                     <button class="btn btn-primary px-4" type="submit">Start</button>
                 </div>
+                    <div class="d-flex mt-4">
+                        <% if(request.getAttribute("error") != null){ %>
+                            <label style="color: #FF3030"><%=request.getAttribute("error")%></label>
+                        <% }%>
+                    </div>
                 </form>
             </div>
 
