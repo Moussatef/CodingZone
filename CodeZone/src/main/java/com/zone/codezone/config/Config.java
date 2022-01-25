@@ -11,7 +11,7 @@ public class Config {
     private static String user = "postgres";
     private static String passwd = "soumia";
     //private static String passwd = "4094";
-    //private static String passwd = "tooor";
+   // private static String passwd = "tooor";
     private static String driver = "org.postgresql.Driver";
     private static Connection connect;
 

@@ -78,6 +78,18 @@ aside {
 .logout a:hover {
 background: #ffe5e5;
 }
+.d-flex{
+    display: flex;
+}
+.justify-content-between{
+    justify-content: space-between;
+}
+.align-items-center{
+    align-items: center;
+}
+.w-80{
+    width: 80%;
+}
 
 main {
     margin-left: 315px;

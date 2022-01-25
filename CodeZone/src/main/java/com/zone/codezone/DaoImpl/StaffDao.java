@@ -5,6 +5,8 @@ import com.zone.codezone.Models.Staff;
 import com.zone.codezone.config.Config;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
 
 public class StaffDao implements DaoInterface<Staff> {
@@ -49,4 +51,5 @@ public class StaffDao implements DaoInterface<Staff> {
             return false;
         }
     }
+
 }

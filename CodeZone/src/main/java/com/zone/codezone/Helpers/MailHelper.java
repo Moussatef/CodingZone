@@ -69,7 +69,7 @@ public class MailHelper {
 
     public  static void  codeMail(String code,String test_title,String email,String stuffname,Date date_beg, Date date_end){
 
-        String sb= stuffname +"Assigned a New  Test for you <br/>"+" Test Tile : "+test_title+"<br/>Available From "+date_beg +" to "+date_end;
+        String sb= stuffname +"     Assigned a New  Test for you <br/>"+" Test Tile : "+test_title+"<br/>Available From "+date_beg +" to "+date_end;
         sendEmail( email, "New Test",mailContent(sb,code));
     }
 
