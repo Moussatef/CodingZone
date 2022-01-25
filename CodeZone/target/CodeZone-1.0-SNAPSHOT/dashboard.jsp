@@ -65,6 +65,12 @@
             <button><img src="resources/icons/settings.svg" alt="icon" class="settings"></button>
         </div>
     </header>
+    <div>
+        <h3><% if (request.getSession().getAttribute("messageSuccess") != null) { %>
+            <%= request.getSession().getAttribute("messageSuccess")%>
+            <% }%>
+        </h3>
+    </div>
     <a href="add-test">
         <div class="card square new-quiz">
             <img src="resources/icons/add-square.svg" alt="add quiz">
@@ -77,6 +83,13 @@
             <img src="resources/icons/add-square.svg" alt="add quiz">
             <h4>Add new question</h4>
             <p>click here to add a new Question for test! </p>
+        </div>
+    </a>
+    <a href="test/candidate-test">
+        <div class="card square new-quiz">
+            <img src="resources/icons/add-square.svg" alt="add quiz">
+            <h4>Test Candidate</h4>
+            <p>click here to add test to candidates ! </p>
         </div>
     </a>
 </main>
