@@ -100,7 +100,7 @@ public class TestResponseDao implements DaoInterface<TestResponse> {
             }
             else{
                 PreparedStatement responseStatement = Config.getInstance().prepareStatement(SqlQueries.insert("test_responses (\n" +
-                        "\tid, test_candidats_id, question_id, choices_id,tests_id)", 5));
+                        "\tid, test_candidats_id, question_id, timer_response,tests_id)", 5));
                 responseStatement.setString(1,id);
                 responseStatement.setString(2,response.getTestCandidate().getId());
                 responseStatement.setString(3,response.getQuestion().getId());

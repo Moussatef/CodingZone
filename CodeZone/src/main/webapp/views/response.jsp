@@ -97,19 +97,24 @@
 </body>
 <script>
     document.getElementById("btnsub").onclick = function() { clearInterval(x);};
-    let i = 0;
+    let i = <%=question.getTime()%>;
     const x = setInterval(function () {
-        i++;
+        i--;
         document.getElementById("timer").innerHTML = i + "s ";
         document.getElementById("timeQ").value=i;
 
-        if (i ===<%=question.getTime()%>) {
+        if (i ===0) {
 
             document.getElementById("btnsub").disabled = true;
             clearInterval(x);
             document.getElementById("formAnswer").submit();
         }
     }, 1000);
+</script>
+<script type = "text/javascript" >
+    function preventBack() { window.history.forward(); }
+    setTimeout("preventBack()", 0);
+    window.onunload = function () { null };
 </script>
 
 </html>

@@ -69,6 +69,5 @@
         <div class="col-6  no-float" style="background-image: url('images/code.png');background-repeat: no-repeat; background-size: cover;"></div>
     </div>
 </div>
-
 </body>
 </html>
