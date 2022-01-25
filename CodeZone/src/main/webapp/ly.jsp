@@ -1,5 +1,5 @@
 <%@ taglib prefix="z" tagdir="/WEB-INF/tags" %>
-<z:layout pageTitle="Dashboard">
+<z:layout pageTitle="Test test">
     <a href="add-test">
         <div class="card square new-quiz">
             <img src="resources/icons/add-square.svg" alt="add quiz">

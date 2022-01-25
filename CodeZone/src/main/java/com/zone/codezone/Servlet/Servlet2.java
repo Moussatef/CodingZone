@@ -19,6 +19,9 @@ import java.util.List;
 public class Servlet2 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        request.getRequestDispatcher("ly.jsp").forward(request, response);
+/*
         List<Question>  questionList = DaoFactory.getQuestions().findAll();
         Competence competence = new Competence("UU","DATABASE");
         Test test = new Test("vyyyuytg","Test", Date.valueOf("2002-10-10"),Date.valueOf("2010-10-10"),competence);
@@ -33,7 +36,7 @@ public class Servlet2 extends HttpServlet {
 
 
         out.println("<h2> 3aaafak </h2>");
-        out.println("</body></html>");
+        out.println("</body></html>");*/
     }
 
     @Override
